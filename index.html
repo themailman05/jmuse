@@ -37,7 +37,25 @@
 		</div>
 	</div>
 
+	<audio id="audio">
+		<source src="audio/gemini.ogg" type="audio/ogg">
+		<source src="audio/gemini.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		document.getElementById("togglePlay").addEventListener("click", function(){
+			var file = document.getElementById('audio');
+			if (file.paused)
+			{
+				file.play;
+			}
+			else
+			{
+				file.pause;
+			}
+		});
+	</script>
 	</body>
 </html>
