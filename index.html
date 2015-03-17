@@ -30,13 +30,13 @@
 				<h5 class="header col s12 light">Audio Playback and Visualization Engine</h5>
 			</div>
 			<div class="row center">
-				<button id="togglePlay" class="btn-large waves-effect waves-light light-blue">Play</button>
+				<button  onclick="document.getElementById('player').play()" class="btn-large waves-effect waves-light light-blue">Play</button>
 			</div>
 			<br><br>
 		</div>
 	</div>
 
-	<audio id="audio" preload="auto">
+	<audio id="player" preload="auto">
 		<source src="audio/gemini.ogg" type="audio/ogg">
 		<source src="audio/gemini.mp3" type="audio/mpeg">
 		Your browser does not support the audio element.
