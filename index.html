@@ -3,9 +3,9 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>PlayIT</title>
-    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
+    <link href='//fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 </head>
 <body>
@@ -16,7 +16,7 @@
 		</a>
 			<ul class="right hide-on-med-and-down">
         		<li><a href="#"><i class="mdi-av-fast-rewind light-blue-text"></i></a></li>
-        		<li><a href="#" id="togglePlay"><i class="mdi-av-play-arrow light-blue-text"></i></a></li>
+        		<li><a href="#" id="togglePlay"><i class="mdi-av-play-arrow light-blue-text" id="playIcon"></i></a></li>
         		<li><a href="#"><i class="mdi-av-fast-forward light-blue-text"></i></a></li>
         			<input type="range" id="location" min="0" max="100" class="light-blue-text" />
       		</ul>
@@ -48,10 +48,12 @@
 			if (file.paused)
 			{
 				file.play();
+				document.getElementById("playIcon").className = "mdi-av-pause light-blue-text";
 			}
 			else
 			{
 				file.pause();
+				document.getElementById("playIcon").className = "mdi-av-play-arrow light-blue-text";
 			}
 		});
 	</script>
