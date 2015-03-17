@@ -30,7 +30,7 @@
 				<h5 class="header col s12 light">Audio Playback and Visualization Engine</h5>
 			</div>
 			<div class="row center">
-				<button  onclick="document.getElementById('player').play()" class="btn-large waves-effect waves-light light-blue">Play</button>
+				<button id="togglePlay" class="btn-large waves-effect waves-light light-blue">Play</button>
 			</div>
 			<br><br>
 		</div>
@@ -45,14 +45,14 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
 	<script type="text/javascript">
 		document.getElementById("togglePlay").addEventListener("click", function(){
-			var file = document.getElementById('audio');
+			var file = document.getElementById('player');
 			if (file.paused)
 			{
-				file.play;
+				file.play();
 			}
 			else
 			{
-				file.pause;
+				file.pause();
 			}
 		});
 	</script>
