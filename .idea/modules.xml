@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CS345 JMuse AV.iml" filepath="$PROJECT_DIR$/.idea/CS345 JMuse AV.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/playit.iml" filepath="$PROJECT_DIR$/.idea/playit.iml" />
     </modules>
   </component>
 </project>
