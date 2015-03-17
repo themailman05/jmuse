@@ -1,0 +1,40 @@
+body {
+    background-color: #DCC6E0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+
+
+
+#header {
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #674172;
+    text-align: center;
+    border:15px #8E44AD dotted;
+    border-radius: 20%;
+    width:60%;
+}
+
+#pButton{
+    height:60px;
+    width: 60px;
+    border: none;
+    background-size: 50% 50%;
+    background-position: center;
+
+}
+/**.play{background: url('../images/play.png') no-repeat;}
+.pause{background: url('../images/pause.png') no-repeat;}
+**/
+.fa-play {
+    width:100px;
+}
+
+h1 {
+    color: #F4D03F
+}
+
+h3 {
+    color: #F5D76E
+}
