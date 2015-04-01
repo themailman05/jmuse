@@ -107,7 +107,7 @@
 				var songName = prompt("Song Title:");
 				var artist = prompt("Artist:");
 				var duration = getDuration(itemToAdd);
-				$("#playlistGUI").append('<li><div class="collapsible-header">' + songName + ' - ' + artist + '</div><div class="collapsible-body"><p>Song Title: ' + songName + '<br />Artist: ' + artist + '<br />Duration: ' + duration + '</p></div></li>');
+				$("#playlistGUI").append('<li><div class="collapsible-header">' + songName + ' - ' + artist + '</div><div class="collapsible-body"><p>Song Title: ' + songName + '<br />Artist: ' + artist + '<br />Duration: ' + duration + '<br />Added: ' + getTime() + '</p></div></li>');
 				updateTotal();
 				playlist[items - 1] = itemToAdd;
 				
@@ -129,8 +129,12 @@
 			}
 			
 			function getDuration(file) {
-				temp.src = file;
+				$("#temp").src = file;
 				return Math.round($("#temp").duration);
+			}
+			
+			function getTime() {
+				return new Date($.now());
 			}
         
 		});
