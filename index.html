@@ -15,9 +15,9 @@
 			<img src="static/img/playIt_logo.png" style="margin-top:6px;" />
 		</a>
 			<ul class="right">
-        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;" id="addIcon"><i class="mdi-content-add light-blue-text"></i></li>
-        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;" id="playIcon"><i class="mdi-av-play-arrow light-blue-text"></i></li>
-        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;" id="clearIcon"><i class="mdi-content-clear light-blue-text"></i></li>
+        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;" id="addBtn"><i class="mdi-content-add light-blue-text" id="addIcon"></i></li>
+        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;" id="playBtn"><i class="mdi-av-play-arrow light-blue-text" id="playIcon"></i></li>
+        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;" id="clearBtn"><i class="mdi-content-clear light-blue-text" id="clearIcon"></i></li>
       		</ul>
       		<input type="file" name="localFileDiag" id="localFileDiag" style="display:none;"/>
 		</div>
@@ -64,7 +64,7 @@
 			var playlist = [];
 			var file = $("#player").get(0);
 			
-			$('#addIcon').on('click',function(evt){
+			$('#addBtn').on('click',function(evt){
             	evt.preventDefault();
          		$('#localFileDiag').trigger('click');
     		});
