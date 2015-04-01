@@ -62,7 +62,7 @@
 			var playing = 0;
 			var playlist = [];
 			var player = $("#player").get(0);
-			var playlistGUI = $("#playlistGUI");
+			var playlistGUI = $("#playlistGUI ul");
 			
 			$('#addBtn').on('click',function(evt){
             	evt.preventDefault();
@@ -95,12 +95,10 @@
 			});
 			
 			function addToPlaylist(itemToAdd) {
-					var newItemLast = document.createElement('li');
-					var newTextLast = document.createTextNode(itemToAdd);
-					newItemLast.appendChild(newTextLast);
-					playlistGUI.appendChild(newItemLast);
-					updateTotal();
-					playlist[playing] = itemToAdd;
+				//var fileName = itemToAdd.replace(/\.jpg/, '');
+				playlistGUI.append("<li><div class=\"collapsible-header\">" + newItemLast + "</div><div class=\"collapsible-body\"><p>File Info</p></div></li>");
+				updateTotal();
+				playlist[playing] = itemToAdd;
 			}
 			
 			function updateTotal() {
