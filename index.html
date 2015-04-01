@@ -75,7 +75,7 @@
 					player.src = playlist[playing];
 					player.play();
 					$("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
-					alert(items);
+					alert(playing);
 				}
 				else
 				{
@@ -102,7 +102,7 @@
 				//var fileName = itemToAdd.replace(/\.jpg/, '');
 				$("#playlistGUI").append('<li><div class="collapsible-header">' + itemToAdd + '</div><div class="collapsible-body"><p>File Info</p></div></li>');
 				updateTotal();
-				playlist[playing] = itemToAdd;
+				playlist[items] = itemToAdd;
 				
 			}
 			
