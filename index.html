@@ -98,7 +98,8 @@
 			});
 			
 			function addToPlaylist(itemToAdd) {
-				$("#playlistGUI").append('<li><div class="collapsible-header">' + itemToAdd + '</div><div class="collapsible-body"><p>File Info</p></div></li>');
+				var songName = prompt("Song Name:");
+				$("#playlistGUI").append('<li><div class="collapsible-header">' + songName + '</div><div class="collapsible-body"><p>File Info</p></div></li>');
 				updateTotal();
 				playlist[items - 1] = itemToAdd;
 				
