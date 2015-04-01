@@ -62,7 +62,6 @@
 			var playing = 0;
 			var playlist = [];
 			var player = $("#player").get(0);
-			var temp = $("#temp").get(0);
 			var playlistGUI = $("#playlistGUI ul");
 			var time = new Date();
 			var formattedTime = time.getHours() + ":" + time.getMinutes();
@@ -72,7 +71,7 @@
          		$('#localFileDiag').trigger('click');
     		});
 		
-			$("#playIcon").click(function(){
+			$("#playBtn").click(function(){
 				if (player.paused)
 				{
 					player.src = playlist[playing];
@@ -85,6 +84,10 @@
 					player.pause();
 					$("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play-arrow");
 				}
+			});
+		
+			$("#clearBtn").click(function(){
+				clearPlaylist();
 			});
 			
 			$('.collapsible').collapsible({
@@ -127,6 +130,15 @@
 			
 			function getTime() {
 				return formattedTime;
+			}
+			
+			function clearPlaylist() {
+				$("#playlistGUI").empty();
+				items = 0;
+				playing = 0;
+				player.pause();
+				player.src = null;
+				playlist = [];
 			}
         
 		});
