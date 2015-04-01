@@ -44,6 +44,13 @@
      						<div class="collapsible-body"><p>Info about sample item three.</p></div>
     					</li>
   					</ul>
+  					<div id="MyUpload">
+    					<span id="FileName">Choose File</span>
+    					<input id="uploadButton" type="button" value="Upload"> 
+					</div>
+					<div id="hideUglyUpload">
+    					<input type="file" name="FileUpload" id="FileUpload"/>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -62,6 +69,11 @@
 			var playing;
 			var playlist = [];
 			var file = $("#player").get(0);
+			
+			$('#uploadButton').on('click',function(evt){
+            	evt.preventDefault();
+         		$('#FileUpload').trigger('click');
+    		});
 		
 			$("#playIcon").click(function(){
 				if (file.paused)
