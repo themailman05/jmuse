@@ -54,6 +54,9 @@
 		<source src="audio/gemini.mp3" type="audio/mpeg">
 		Your browser does not support the audio element.
 	</audio>
+	<audio id="temp">
+		Your browser does not support the audio element.
+	</audio>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
 	<script type="text/javascript">
@@ -62,6 +65,7 @@
 			var playing = 0;
 			var playlist = [];
 			var player = $("#player").get(0);
+			var temp = $("#temp").get(0);
 			var playlistGUI = $("#playlistGUI ul");
 			
 			$('#addBtn').on('click',function(evt){
@@ -98,8 +102,10 @@
 			});
 			
 			function addToPlaylist(itemToAdd) {
-				var songName = prompt("Song Name:");
-				$("#playlistGUI").append('<li><div class="collapsible-header">' + songName + '</div><div class="collapsible-body"><p>File Info</p></div></li>');
+				var songName = prompt("Song Title:");
+				var artist = prompt("Artist:");
+				var duration = getDuration(itemToAdd);
+				$("#playlistGUI").append('<li><div class="collapsible-header">' + songName + ' - ' + artist + '</div><div class="collapsible-body"><p>Song Title: ' + songName + '<br />Artist: ' + artist + '<br />Duration: ' + duration + '</p></div></li>');
 				updateTotal();
 				playlist[items - 1] = itemToAdd;
 				
@@ -118,6 +124,11 @@
 				player.src = playlist[playing];
 				player.play();
 				
+			}
+			
+			function getDuration(file) {
+				temp.src = file;
+				return file.duration;
 			}
         
 		});
