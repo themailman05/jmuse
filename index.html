@@ -46,9 +46,9 @@
 		$(document).ready(function(){
 			var items = 0;
 			var playlist = [];
+			var file = $("#player").get(0);
 		
 			$("#playIcon").click(function(){
-				var file = $("#player");
 				if (file.paused)
 				{
 					file.play();
