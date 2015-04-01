@@ -75,7 +75,6 @@
 					player.src = playlist[playing];
 					player.play();
 					$("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
-					alert(playing + " is playing and there are " + playlist.length + " items in the array.  There have been " + items + "files added to the playlist.");
 				}
 				else
 				{
@@ -99,7 +98,6 @@
 			});
 			
 			function addToPlaylist(itemToAdd) {
-				//var fileName = itemToAdd.replace(/\.jpg/, '');
 				$("#playlistGUI").append('<li><div class="collapsible-header">' + itemToAdd + '</div><div class="collapsible-body"><p>File Info</p></div></li>');
 				updateTotal();
 				playlist[items - 1] = itemToAdd;
@@ -118,7 +116,6 @@
 				}
 				player.src = playlist[playing];
 				player.play();
-				alert(playing + " is playing and there are " + playlist.length + " items in the array.  There have been " + items + "files added to the playlist.");
 				
 			}
         
