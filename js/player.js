@@ -62,6 +62,12 @@ function drumMachine(){
     }
 }
 
+// $(function(){
+//    $('#clickme').click(function(){
+//        $('#uploadme').click();
+//    });
+// }); 
+
 function BufferLoader(context, urlList, callback) {
     this.context = context;
     this.urlList = urlList;
