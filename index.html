@@ -104,10 +104,11 @@
 				$("#playlistGUI").append('<li><div class="collapsible-header">' + itemToAdd + '</div><div class="collapsible-body"><p>File Info</p></div></li>');
 				updateTotal();
 				playlist[playing] = itemToAdd;
+				
 			}
 			
 			function updateTotal() {
-				items = playlistGUI.length;
+				items++;
 			}
 			
 			function playNext() {
