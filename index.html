@@ -47,8 +47,8 @@
 			var items = 0;
 			var playlist = [];
 		
-			document.getElementById("playIcon").addEventListener("click", function(){
-				var file = $('#player');
+			$("#playIcon").click(function(){
+				var file = $("#player");
 				if (file.paused)
 				{
 					file.play();
@@ -57,7 +57,7 @@
 				else
 				{
 					file.pause();
-					$("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play");
+					$("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play-arrow");
 				}
 			});
 			
