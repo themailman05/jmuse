@@ -15,10 +15,11 @@
 			<img src="static/img/playIt_logo.png" style="margin-top:6px;" />
 		</a>
 			<ul class="right">
-        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;"><i class="mdi-content-add light-blue-text"></i></li>
+        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;"><i class="mdi-content-add light-blue-text" id="addIcon"></i></li>
         		<li style="padding-left:10px;padding-right:10px;cursor:pointer;"><i class="mdi-av-play-arrow light-blue-text" id="playIcon"></i></li>
         		<li style="padding-left:10px;padding-right:10px;cursor:pointer;"><i class="mdi-content-clear light-blue-text"></i></li>
       		</ul>
+      		<input type="file" name="localFileDiag" id="localFileDiag" style="display:none;"/>
 		</div>
 	</nav>
 	<div class="section no-pad-bot" id="index-banner">
@@ -44,13 +45,6 @@
      						<div class="collapsible-body"><p>Info about sample item three.</p></div>
     					</li>
   					</ul>
-  					<div id="MyUpload">
-    					<span id="FileName">Choose File</span>
-    					<input id="uploadButton" type="button" value="Upload"> 
-					</div>
-					<div id="hideUglyUpload">
-    					<input type="file" name="FileUpload" id="FileUpload"/>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -70,9 +64,9 @@
 			var playlist = [];
 			var file = $("#player").get(0);
 			
-			$('#uploadButton').on('click',function(evt){
+			$('#addIcon').on('click',function(evt){
             	evt.preventDefault();
-         		$('#FileUpload').trigger('click');
+         		$('#localFileDiag').trigger('click');
     		});
 		
 			$("#playIcon").click(function(){
