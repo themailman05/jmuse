@@ -104,8 +104,7 @@
 			function addToPlaylist(itemToAdd) {
 				var songName = prompt("Song Title:");
 				var artist = prompt("Artist:");
-				var duration = getDuration(itemToAdd);
-				$("#playlistGUI").append('<li><div class="collapsible-header">' + songName + ' - ' + artist + '</div><div class="collapsible-body"><p>Song Title: ' + songName + '<br />Artist: ' + artist + '<br />Duration: ' + duration + '<br />Added: ' + getTime() + '</p></div></li>');
+				$("#playlistGUI").append('<li><div class="collapsible-header">' + songName + ' - ' + artist + '</div><div class="collapsible-body"><p>Song Title: ' + songName + '<br />Artist: ' + artist + '<br />Added: ' + getTime() + '</p></div></li>');
 				updateTotal();
 				playlist[items - 1] = itemToAdd;
 				
@@ -124,17 +123,6 @@
 				player.src = playlist[playing];
 				player.play();
 				
-			}
-			
-			function getDuration(file) {
-				var thisDuration;
-				var temp = new Audio();
-				temp.src = file;
-				temp.addEventListener('loadedmetadata', function() {
-    				thisDuration = temp.duration;
-				});
-				
-				return thisDuration;
 			}
 			
 			function getTime() {
