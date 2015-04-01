@@ -15,9 +15,9 @@
 			<img src="static/img/playIt_logo.png" style="margin-top:6px;" />
 		</a>
 			<ul class="right hide-on-med-and-down">
-        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;"><i class="mdi-av-fast-rewind light-blue-text"></i></li>
+        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;"><i class="mdi-content-add light-blue-text"></i></li>
         		<li style="padding-left:10px;padding-right:10px;cursor:pointer;"><i class="mdi-av-play-arrow light-blue-text" id="playIcon"></i></li>
-        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;"><i class="mdi-av-fast-forward light-blue-text"></i></li>
+        		<li style="padding-left:10px;padding-right:10px;cursor:pointer;"><i class="mdi-content-clear light-blue-text"></i></li>
         			<input type="range" id="location" min="0" max="100" class="light-blue-text" />
       		</ul>
 		</div>
@@ -43,18 +43,27 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
 	<script type="text/javascript">
-		document.getElementById("playIcon").addEventListener("click", function(){
-			var file = document.getElementById('player');
-			if (file.paused)
-			{
-				file.play();
-				document.getElementById("playIcon").className = "mdi-av-pause light-blue-text";
-			}
-			else
-			{
-				file.pause();
-				document.getElementById("playIcon").className = "mdi-av-play-arrow light-blue-text";
-			}
+		$(document).ready(function(){
+			var items = 0;
+		
+			document.getElementById("playIcon").addEventListener("click", function(){
+				var file = $('#player');
+				if (file.paused)
+				{
+					file.play();
+					$("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
+				}
+				else
+				{
+					file.pause();
+					$("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play");
+				}
+			});
+			
+			$('.collapsible').collapsible({
+      			accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+    		});
+        
 		});
 	</script>
     <!-- <script src="js/player.js"></script> -->
