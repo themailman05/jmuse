@@ -90,6 +90,12 @@
 			$('.collapsible').collapsible({
       			accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     		});
+    		
+    		$('#player').on('change',function(evt){
+    			var files = this.files;
+    			var file = URL.createObjectURL(files[0]); 
+    			player.src = file; 
+			});
         
 		});
 		
