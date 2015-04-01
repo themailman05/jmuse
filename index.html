@@ -54,11 +54,6 @@
 		<source src="audio/gemini.mp3" type="audio/mpeg">
 		Your browser does not support the audio element.
 	</audio>
-	<audio id="temp" preload="auto">
-		<source src="audio/gemini.ogg" type="audio/ogg">
-		<source src="audio/gemini.mp3" type="audio/mpeg">
-		Your browser does not support the audio element.
-	</audio>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
 	<script type="text/javascript">
@@ -131,8 +126,14 @@
 			}
 			
 			function getDuration(file) {
-				$("#temp").src = file;
-				return Math.round($("#temp").duration);
+				var thisDuration;
+				var temp = new Audio();
+				temp.src = file;
+				temp.addEventListener('loadedmetadata', function() {
+    				thisDuration = temp.duration;
+				});
+				
+				return thisDuration;
 			}
 			
 			function getTime() {
