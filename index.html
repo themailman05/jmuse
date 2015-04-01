@@ -75,7 +75,7 @@
 					player.src = playlist[playing];
 					player.play();
 					$("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
-					alert(playing);
+					alert(playing + " is playing and there are " + playlist.length + " items in the array.  There have been " + items + "files added to the playlist.");
 				}
 				else
 				{
@@ -117,7 +117,7 @@
 					playing = 0;
 				}
 				player.src = playlist[playing];
-				alert(items);
+				alert(playing + " is playing and there are " + playlist.length + " items in the array.  There have been " + items + "files added to the playlist.");
 				
 			}
         
