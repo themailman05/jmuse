@@ -158,7 +158,7 @@
 				}
 				
 			    player.prop("src", playlist[playing]);
-				player.get(0).play();
+				player.play();
 				
 			}
 			
@@ -170,7 +170,7 @@
 				$("#playlistGUI").empty();
 				items = 0;
 				playing = 0;
-				player.get(0).pause();
+				player.pause();
 				$("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play-arrow");
 				player.src = null;
 				playlist = [];
