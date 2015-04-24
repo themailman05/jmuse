@@ -53,6 +53,7 @@
 	<audio id="player" preload="auto">
 		Your browser does not support the audio element.
 	</audio>
+	<audio id="temp" preload="auto"></audio>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
 	<script type="text/javascript">
@@ -60,7 +61,8 @@
 			var items = 0,
 			playing = 0,
 			playlist = [],
-			player = $("#player").get(0),
+			player = $("#player"),
+			player = $("#temp"),
 			playlistGUI = $("#playlistGUI ul"),
 			time = new Date(),
 			formattedTime = time.getHours() + ":" + time.getMinutes(),
@@ -70,7 +72,7 @@
 			fileType,
 			fileSize;
 
-			$("#player").on("canplaythrough", function(e){
+			$("#temp").on("canplaythrough", function(e){
 			    var seconds = e.currentTarget.duration;
 			    var duration = moment.duration(seconds, "seconds");
 			    
@@ -128,6 +130,7 @@
 			    fileSize = file.size;
 			    
 			    objectUrl = URL.createObjectURL(file);
+    			$("#temp").prop("src", objectUrl);
 			    
     			addToPlaylist(objectURL);
 			});
@@ -142,7 +145,6 @@
 				updateTotal();
 				$("#playlistGUI").append('<li id="song' + (items - 1) + '"><div class="collapsible-header">' + songName + ' - ' + artist + '</div><div class="collapsible-body"><p>Song Title: ' + songName + '<br />Artist: ' + artist + '<br />Duration: <span id="duration' + (items - 1) + '"></span></p></div></li>');
 				playlist[items - 1] = itemToAdd;
-				
 			}
 			
 			function updateTotal() {
