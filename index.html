@@ -197,7 +197,7 @@
 				request.onsuccess = function (event) {
 					console.log("Success creating/accessing IndexedDB database");
 					db = request.result;
-					db.createObjectStore("elephants");
+					db.createObjectStore("audiofileDB");
 					console.log("Creating objectStore");
 
 				};
@@ -210,7 +210,6 @@
 			};
 
 			function writeToDB(file1) {
-				$('#localFileDialog')
 				var request = window.indexedDB.open("audioFileDB", 3);
 				request.onerror = function (event) {
 					alert("Can't reach IndexedDB");
@@ -220,7 +219,7 @@
 					var trans = db.transaction("audioFileDB", READ_WRITE);
 					trans.objectStore("audiofileDB").put(myArrayBuffer, "titleKey");
 
-				}
+				};
 
 				function handleFileSelect() {
 					if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
