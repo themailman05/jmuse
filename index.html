@@ -129,7 +129,7 @@
 			    fileSize = file.size;
 			    
 			    objectUrl = URL.createObjectURL(file);
-    			addToPlaylist(file);
+    			addToPlaylist(objectURL);
     			$("#temp").prop("src", objectUrl);
 			});
 			
