@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="c921a64f-de47-4362-84a6-454d6d06da07" name="Default" comment="WHAT AM I DOING&#10;">
+    <list default="true" readonly="true" id="c921a64f-de47-4362-84a6-454d6d06da07" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -27,8 +27,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7607973">
-              <caret line="161" column="14" selection-start-line="161" selection-start-column="14" selection-end-line="161" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.8504983">
+              <caret line="261" column="104" selection-start-line="261" selection-start-column="104" selection-end-line="261" selection-end-column="104" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -223,6 +223,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="svn" revision="130">$PROJECT_DIR$/testing.html</PATH>
+          <PATH vcs="svn" revision="130">$PROJECT_DIR$/tests.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -280,7 +282,7 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="MERGED" />
-        <PATH vcs="svn" revision="124">$PROJECT_DIR$/index.html</PATH>
+        <PATH vcs="svn" revision="130">$PROJECT_DIR$/index.html</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Not in repository" />
@@ -482,7 +484,13 @@
       <option name="project" value="LOCAL" />
       <updated>1429839171592</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="WHAT AM I DOING&#10;pt 2">
+      <created>1429839781702</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1429839781702</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -542,7 +550,8 @@
     <MESSAGE value="MIstakes were made" />
     <MESSAGE value="MIstakes were made pt 2" />
     <MESSAGE value="WHAT AM I DOING&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="WHAT AM I DOING&#10;" />
+    <MESSAGE value="WHAT AM I DOING&#10;pt 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="WHAT AM I DOING&#10;pt 2" />
     <option name="CHANGE_BROWSER_SETTINGS">
       <map>
         <entry key="svn">
@@ -895,8 +904,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7607973">
-          <caret line="161" column="14" selection-start-line="161" selection-start-column="14" selection-end-line="161" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.8504983">
+          <caret line="261" column="104" selection-start-line="261" selection-start-column="104" selection-end-line="261" selection-end-column="104" />
           <folding>
             <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />

@@ -73,7 +73,7 @@
 
 			window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.OIndexedDB || window.msIndexedDB,
 					IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.OIDBTransaction || window.msIDBTransaction,
-					dbVersion = 1;
+					dbVersion = 3;
 
 			createDB();
 
@@ -149,12 +149,12 @@
 				var file = URL.createObjectURL(files[0]);
 				addToPlaylist(file);
 				$("#temp").prop("src", file);
-				handleFileSelect(file[0]);
+				handleFileSelect(files[0]);
 			});
 
 			function handleFileSelect(file) {
+				    console.log(file);
 					fr = new FileReader();
-					fr.onload = receivedText;
 					fr.readAsArrayBuffer(file);
 					writeToDB(fr.result);
 
@@ -203,13 +203,11 @@
 			}
 
 			function createDB() {
-				var request = indexedDB.open("audiofileDB", dbVersion);
+				var request = indexedDB.open("audioFileDB", dbVersion);
 
 				request.onsuccess = function (event) {
 					console.log("Success creating/accessing IndexedDB database");
 					db = request.result;
-					db.createObjectStore("audiofileDB");
-					console.log("Creating objectStore");
 
 				};
 
@@ -217,18 +215,30 @@
 					console.log("Error creating/accessing IndexedDB database");
 				};
 
+				request.onupgradeneeded = function (event) {
+					var objectStore = event.currentTarget.result.createObjectStore("audioFiles",
+							{keyPath: "title"});
+				}
+
 
 			};
 
 			function writeToDB(file1) {
-				var request = window.indexedDB.open("audioFileDB", 3);
+				var request = window.indexedDB.open("audioFileDB", dbVersion+1);
+				dbVersion = dbVersion+1;
 				request.onerror = function (event) {
 					alert("Can't reach IndexedDB");
 				};
 				request.onsuccess = function (event) {
 					db = event.target.result;
-					var trans = db.transaction("audioFileDB", READ_WRITE);
-					trans.objectStore("audiofileDB").put(myArrayBuffer, "titleKey");
+					console.log(db)
+					var transaction = db.transaction("audioFiles",  "readwrite", 2000);
+					transaction.oncomplete = function(){
+						console.log("Success transaction");
+					};
+
+					var trans = db.transaction("audioFiles", READ_WRITE);
+					trans.objectStore("audioFiles").put(myArrayBuffer, "titleKey");
 
 				};
 
@@ -247,5 +257,9 @@
         <!-- <script type="text/javascript"> -->
             <!-- document.getElementById("drumMachine").addEventListener("click", drumMachine()); -->
         <!-- </script> -->
+
+
+	<iframe id="debuggerId" class="debuggerContainer" src="IDBExplorer/IDBExplorer.html?name=audioFileDB"></iframe>
+
 	</body>
 </html>
