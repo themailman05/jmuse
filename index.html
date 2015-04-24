@@ -63,9 +63,11 @@
 			player = $("#player").get(0),
 			playlistGUI = $("#playlistGUI ul"),
 			time = new Date(),
-			formattedTime = time.getHours() + ":" + time.getMinutes();
-			
-			var objectUrl;
+			formattedTime = time.getHours() + ":" + time.getMinutes(),
+			objectURL,
+			fileName,
+			fileType,
+			fileSize;
 
 			$("#player").on("canplaythrough", function(e){
 			    var seconds = e.currentTarget.duration;
@@ -81,19 +83,8 @@
 			    URL.revokeObjectURL(objectUrl);
 			});
 			
-			$("#file").change(function(e){
-			    var file = e.currentTarget.files[0];
-			   
-			    $("#filename").text(file.name);
-			    $("#filetype").text(file.type);
-			    $("#filesize").text(file.size);
-			    
-			    objectUrl = URL.createObjectURL(file);
-			    $("#audio").prop("src", objectUrl);
-			});
-			
-			$('#addBtn').on('click',function(evt){
-            	evt.preventDefault();
+			$('#addBtn').on('click',function(e){
+            	e.preventDefault();
          		$('#localFileDiag').trigger('click');
     		});
 		
@@ -126,9 +117,17 @@
       			accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
     		});
     		
-    		$('#localFileDiag').on('change',function(evt){
+    		$('#localFileDiag').on('change',function(e){
     			var files = this.files;
-    			var file = URL.createObjectURL(files[0]);
+    			var file = e.currentTarget.files[0];
+			   
+			    fileName = file.name;
+			    fileType = file.type;
+			    fileSize = file.size;
+			    
+			    objectUrl = URL.createObjectURL(file);
+			    $("#player").prop("src", objectUrl);
+			    
     			addToPlaylist(file);
 			});
 			
