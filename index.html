@@ -121,16 +121,11 @@
     		});
     		
     		$('#localFileDiag').on('change',function(e){
+    			
     			var files = this.files;
-    			var file = e.currentTarget.files[0];
-			   
-			    fileName = file.name;
-			    fileType = file.type;
-			    fileSize = file.size;
-			    
-			    objectUrl = URL.createObjectURL(files[0]);
-    			addToPlaylist(objectUrl);
-    			$("#temp").prop("src", objectUrl);
+    			var file = URL.createObjectURL(files[0]);
+    			addToPlaylist(file);
+    			$("#temp").prop("src", file);
 			});
 			
 			$('#player').on('ended', function() {
