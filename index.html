@@ -81,7 +81,7 @@
 			    var seconds = duration.seconds();
 			    if (hours > 0) { time = hours + ":" ; }
 			    if (minutes == 0) { minutes = "00"; }
-			    if (seconds > 10 && seconds != 0) { seconds = "0" + seconds}
+			    if (seconds < 10 && seconds != 0) { seconds = "0" + seconds}
 			    else if (seconds == 0) { seconds = "00"; }
 			    
 			    time = time + duration.minutes() + ":" + seconds;
