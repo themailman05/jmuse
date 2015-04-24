@@ -157,7 +157,7 @@
 					playing = 0;
 				}
 				player.src = playlist[playing];
-				player.play();
+				player.get(0).play();
 				
 			}
 			
@@ -169,7 +169,7 @@
 				$("#playlistGUI").empty();
 				items = 0;
 				playing = 0;
-				player.pause();
+				player.get(0).pause();
 				$("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play-arrow");
 				player.src = null;
 				playlist = [];
