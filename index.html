@@ -90,6 +90,16 @@
 			    
 			    URL.revokeObjectURL(objectUrl);
 			});
+			window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.OIndexedDB || window.msIndexedDB,
+					IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.OIDBTransaction || window.msIDBTransaction,
+					dbVersion = 1;
+			var items = 0;
+			var playing = 0;
+			var playlist = [];
+			var player = $("#player").get(0);
+			var playlistGUI = $("#playlistGUI ul");
+			var time = new Date();
+			var formattedTime = time.getHours() + ":" + time.getMinutes();
 			
 			$('#addBtn').on('click',function(e){
             	e.preventDefault();
@@ -174,12 +184,74 @@
 				player.src = null;
 				playlist = [];
 			}
+
+			function createDB() {
+				var request = indexedDB.open("audiofileDB", dbVersion);
+
+				request.onsuccess = function (event) {
+					console.log("Success creating/accessing IndexedDB database");
+					db = request.result;
+					db.createObjectStore("elephants");
+					console.log("Creating objectStore");
+
+				};
+
+					db.onerror = function (event) {
+						console.log("Error creating/accessing IndexedDB database");
+				};
+
+
+
+			};
+
+			function writeToDB(file1) {
+				$('#localFileDialog')
+				var request = window.indexedDB.open("MyTestDatabase", 3);
+				request.onerror = function(event) {
+					alert("Can't reach IndexedDB");
+				};
+				request.onsuccess = function(event) {
+					db = event.target.result;
+					var transaction = db.transaction([""], IDBTransaction.READ_WRITE);
+
+			}
+
+			function handleFileSelect()
+			{
+				if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+					alert('The File APIs are not fully supported in this browser.');
+					return;
+				}
+
+				input = document.getElementById('localFileDialog');
+				if (!input) {
+					alert("Couldn't find the fileinput element.");
+				}
+				else if (!input.files) {
+					alert("This browser doesn't seem to support the `files` property of file inputs.");
+				}
+				else if (!input.files[0]) {
+					alert("Please select a file before clicking 'Load'");
+				}
+				else {
+					db = window.IndexedDB.open("audioFileDB");
+					file = input.files[0];
+					fr = new FileReader();
+					fr.onload = receivedText;
+					fr.readAsArrayBuffer(file);
+					writeToDB(fr.result);
+					var trans = db.transaction("audioFileDB", READ_WRITE);
+					trans.objectStore("audiofileDB").put(myArrayBuffer, "titleKey");
+
+
+				}
+			}
         
 		});
 		
 		
 	</script>
-    <!-- <script src="js/player.js"></script> -->
+    <!-- <script src="js/drummachine.js"></script> -->
     
     <!-- <input type="file" style="visibility:hidden;" id="uploadme" /> -->
     <!-- <input type="button" id="clickme" value="Upload mp3!" /> -->
