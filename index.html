@@ -130,7 +130,7 @@
 			    objectUrl = URL.createObjectURL(file);
 			    $("#player").prop("src", objectUrl);
 			    
-    			addToPlaylist(file);
+    			addToPlaylist(objectURL);
 			});
 			
 			$('#player').on('ended', function() {
