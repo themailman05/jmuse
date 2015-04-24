@@ -128,7 +128,6 @@
 			    fileSize = file.size;
 			    
 			    objectUrl = URL.createObjectURL(file);
-			    $("#player").prop("src", objectUrl);
 			    
     			addToPlaylist(objectURL);
 			});
@@ -156,7 +155,8 @@
 				{
 					playing = 0;
 				}
-				player.src = playlist[playing];
+				
+			    player.prop("src", playlist[playing]);
 				player.get(0).play();
 				
 			}
