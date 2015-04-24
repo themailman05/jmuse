@@ -128,8 +128,8 @@
 			    fileType = file.type;
 			    fileSize = file.size;
 			    
-			    objectUrl = URL.createObjectURL(file);
-    			addToPlaylist(objectURL);
+			    objectUrl = URL.createObjectURL(files[0]);
+    			addToPlaylist(objectUrl);
     			$("#temp").prop("src", objectUrl);
 			});
 			
