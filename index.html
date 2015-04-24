@@ -71,6 +71,8 @@
 					fileType,
 					fileSize;
 
+			createDB();
+
 			$("#temp").on("canplaythrough", function (e) {
 				var seconds = e.currentTarget.duration;
 				var duration = moment.duration(seconds, "seconds");
@@ -145,6 +147,7 @@
 				var file = URL.createObjectURL(files[0]);
 				addToPlaylist(file);
 				$("#temp").prop("src", file);
+				handleFileSelect();
 			});
 
 			$('#player').on('ended', function () {
@@ -208,13 +211,14 @@
 
 			function writeToDB(file1) {
 				$('#localFileDialog')
-				var request = window.indexedDB.open("MyTestDatabase", 3);
+				var request = window.indexedDB.open("audioFileDB", 3);
 				request.onerror = function (event) {
 					alert("Can't reach IndexedDB");
 				};
 				request.onsuccess = function (event) {
 					db = event.target.result;
-					var transaction = db.transaction([""], IDBTransaction.READ_WRITE);
+					var trans = db.transaction("audioFileDB", READ_WRITE);
+					trans.objectStore("audiofileDB").put(myArrayBuffer, "titleKey");
 
 				}
 
@@ -241,9 +245,6 @@
 						fr.onload = receivedText;
 						fr.readAsArrayBuffer(file);
 						writeToDB(fr.result);
-						var trans = db.transaction("audioFileDB", READ_WRITE);
-						trans.objectStore("audiofileDB").put(myArrayBuffer, "titleKey");
-
 
 					}
 				}
