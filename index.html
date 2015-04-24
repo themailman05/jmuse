@@ -149,7 +149,16 @@
 				var file = URL.createObjectURL(files[0]);
 				addToPlaylist(file);
 				$("#temp").prop("src", file);
-				handleFileSelect();
+				handleFileSelect(file[0]);
+			});
+
+			function handleFileSelect(file) {
+					fr = new FileReader();
+					fr.onload = receivedText;
+					fr.readAsArrayBuffer(file);
+					writeToDB(fr.result);
+
+				}
 			});
 
 			$('#player').on('ended', function () {
@@ -204,7 +213,7 @@
 
 				};
 
-				db.onerror = function (event) {
+				request.onerror = function (event) {
 					console.log("Error creating/accessing IndexedDB database");
 				};
 
@@ -223,35 +232,7 @@
 
 				};
 
-				function handleFileSelect() {
-					if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
-						alert('The File APIs are not fully supported in this browser.');
-						return;
-					}
-
-					input = document.getElementById('localFileDialog');
-					if (!input) {
-						alert("Couldn't find the fileinput element.");
-					}
-					else if (!input.files) {
-						alert("This browser doesn't seem to support the `files` property of file inputs.");
-					}
-					else if (!input.files[0]) {
-						alert("Please select a file before clicking 'Load'");
-					}
-					else {
-						db = window.IndexedDB.open("audioFileDB");
-						file = input.files[0];
-						fr = new FileReader();
-						fr.onload = receivedText;
-						fr.readAsArrayBuffer(file);
-						writeToDB(fr.result);
-
-					}
-				}
-
-			}
-		});
+		};
 		
 		
 	</script>
