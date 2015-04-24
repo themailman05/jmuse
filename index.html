@@ -71,6 +71,10 @@
 					fileType,
 					fileSize;
 
+			window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.OIndexedDB || window.msIndexedDB,
+					IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.OIDBTransaction || window.msIDBTransaction,
+					dbVersion = 1;
+
 			createDB();
 
 			$("#temp").on("canplaythrough", function (e) {
@@ -100,9 +104,7 @@
 
 				URL.revokeObjectURL(objectUrl);
 			});
-			window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.OIndexedDB || window.msIndexedDB,
-					IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.OIDBTransaction || window.msIDBTransaction,
-					dbVersion = 1;
+
 			var items = 0;
 			var playing = 0;
 			var playlist = [];
