@@ -80,7 +80,7 @@
 			    
 			    time = time + duration.minutes() + ":" + duration.seconds();
 			    duration = time;
-				$("#playlistGUI").append('<li><div class="collapsible-header">' + songName + ' - ' + artist + '</div><div class="collapsible-body"><p>Song Title: ' + songName + '<br />Artist: ' + artist + '<br />Duration: ' + duration + '</p></div></li>');
+			    $("#duration" + (items - 1)).text(duration);
 			    
 			    URL.revokeObjectURL(objectUrl);
 			});
@@ -141,6 +141,7 @@
 				var songName = prompt("Song Title:");
 				var artist = prompt("Artist:");
 				updateTotal();
+				$("#playlistGUI").append('<li id="song' + (items - 1) + '"><div class="collapsible-header">' + songName + ' - ' + artist + '</div><div class="collapsible-body"><p>Song Title: ' + songName + '<br />Artist: ' + artist + '<br />Duration: <span id="duration' + (items - 1) + '"></span></p></div></li>');
 				playlist[items - 1] = itemToAdd;
 				
 			}
