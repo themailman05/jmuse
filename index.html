@@ -75,7 +75,7 @@
 					fileName,
 					fileType,
 					fileSize;
-            var dbname = "AudioDB"
+            var dbname = "AudioDB";
 
             openDB();
             refreshPlaylist();
@@ -129,7 +129,7 @@
 						player.src = playlist[playing];
 						player.play();
 						$("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
-                        playFromDB("The Pot")
+                        playFromDB("The Pot");
 					}
 					else {
 						player.pause();
@@ -165,7 +165,7 @@
                         console.log("FIleReader output: " + fr.result);
                         writeToDB(fr.result, songName);
 
-                }
+                };
 
 
 			}
@@ -238,7 +238,7 @@
                     openRequest.onerror = function(e) {
                         console.log("Error");
                         console.dir(e);
-                    }
+                    };
 
                 }
 			}
