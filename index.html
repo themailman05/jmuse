@@ -76,7 +76,14 @@
 					IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.OIDBTransaction || window.msIDBTransaction,
 					dbVersion = 1;
 
-			createDB();
+            openDB();
+
+
+            refreshPlaylist();
+
+
+
+
 
 			$("#temp").on("canplaythrough", function (e) {
 				var seconds = e.currentTarget.duration;
@@ -103,7 +110,7 @@
 				duration = time;
 				$("#duration" + (items - 1)).text(duration);
 
-				URL.revokeObjectURL(objectUrl);
+				/*URL.revokeObjectURL(objectUrl);*/
 			});
             /*var items = 0;
 			var playing = 0;
@@ -127,6 +134,7 @@
 						player.src = playlist[playing];
 						player.play();
 						$("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
+                        playFromDB("The Pot")
 					}
 					else {
 						player.pause();
@@ -147,27 +155,46 @@
 
 				var files = this.files;
 				var file = URL.createObjectURL(files[0]);
-				addToPlaylist(file);
+                var songName = prompt("Song Title:");
+                var artist = prompt("Artist:");
+				addToPlaylist(file, songName, artist);
 				$("#temp").prop("src", file);
-				handleFileSelect(files[0]);
+				handleFileSelect(files[0], songName, artist);
 			});
 
-			function handleFileSelect(file) {
+			function handleFileSelect(file, songName, artist) {
 				    console.log(file);
 					fr = new FileReader();
 					fr.readAsArrayBuffer(file);
-					writeToDB(fr.result);
+                    fr.onload = function(){
+                        console.log("FIleReader output: " + fr.result);
+                        writeToDB(fr.result, songName);
+
+                }
+
 
 			}
+
+            function refreshPlaylist(){
+               openDB();
+               var transaction = db.transaction(["audioFiles"], "readwrite");
+               var store = transaction.objectStore("audioFiles");
+               var objrequest = store.getAll();
+
+               objrequest.onsuccess = function(e) {
+                   for (ii = 0; ii < request.result.length; ii++) {
+                       url = windows.url.createobjectURL(request.result);
+                       addToPlaylist(request.result, "textsong", "test");
+                   }
+               }
+            }
 			
 
 			$('#player').on('ended', function () {
 				playNext();
 			});
 
-			function addToPlaylist(itemToAdd) {
-				var songName = prompt("Song Title:");
-				var artist = prompt("Artist:");
+			function addToPlaylist(itemToAdd, songName, artist) {
 				updateTotal();
 				$("#playlistGUI").append('<li id="song' + (items - 1) + '"><div class="collapsible-header">' + songName + ' - ' + artist + '</div><div class="collapsible-body"><p>Song Title: ' + songName + '<br />Artist: ' + artist + '<br />Duration: <span id="duration' + (items - 1) + '"></span></p></div></li>');
 				playlist[items - 1] = itemToAdd;
@@ -202,48 +229,75 @@
 				playlist = [];
 			}
 
-			function createDB() {
-				var request = indexedDB.open(dbname, window.dbVersion);
-				window.dbVersion = window.dbVersion+1
+			function openDB() {
+                if("indexedDB" in window) {
+                    idbSupported = true;
+                }
 
-				request.onsuccess = function (event) {
-					console.log("Success creating/accessing IndexedDB database");
-					db = request.result;
+                if(idbSupported) {
+                    var openRequest = indexedDB.open("audioFilesStore",1);
 
-				};
+                    openRequest.onupgradeneeded = function(e) {
+                        console.log("running onupgradeneeded");
+                        var db = e.target.result;
 
-				request.onerror = function (event) {
-					console.log("Error creating/accessing IndexedDB database");
-				};
+                        if(!db.objectStoreNames.contains("audioFiles")) {
+                            db.createObjectStore("audioFiles");
+                        }
 
-				request.onupgradeneeded = function (event) {
-					var objectStore = event.currentTarget.result.createObjectStore("audioFiles",
-							{keyPath: "title"});
-				}
+                    };
+
+                    openRequest.onsuccess = function(e) {
+                        console.log("Success!");
+                        db = e.target.result;
+                    };
+
+                    openRequest.onerror = function(e) {
+                        console.log("Error");
+                        console.dir(e);
+                    }
+
+                }
+			}
+
+			function writeToDB(file1, songName) {
+                openDB();
+                var transaction = db.transaction(["audioFiles"],"readwrite");
+                var store = transaction.objectStore("audioFiles");
+                console.log(file1);
+                var request = store.add(file1, songName);
 
 
-			};
-
-			function writeToDB(file1) {
-				var request = window.indexedDB.open(dbname, window.dbVersion);
-				window.dbVersion = window.dbVersion+1;
-				request.onerror = function (event) {
-					alert("Can't reach IndexedDB");
-				};
-				request.onsuccess = function (event) {
+                /*request.onsuccess = function (event) {
 					db = event.target.result;
 					console.log(db)
 					var transaction = db.transaction("audioFiles",  "readwrite", 2000);
 					transaction.oncomplete = function(){
 						console.log("Success transaction");
+                        var trans = db.transaction("audioFiles", READ_WRITE);
+                        trans.objectStore("audioFiles").put(myArrayBuffer, "titleKey");
 					};
+					*/
 
-					var trans = db.transaction("audioFiles", READ_WRITE);
-					trans.objectStore("audioFiles").put(myArrayBuffer, "titleKey");
 
-				};
 
-			};
+            }
+            function playFromDB(songName) {
+                openDB();
+                var transaction = db.transaction(["audioFiles"], "readwrite");
+                var store = transaction.objectStore("audioFiles");
+                thesong = store.get(songName);
+                thesong.onerror = function(event) {
+                    // Handle errors!
+                };
+                thesong.onsuccess = function(event) {
+                    // Do something with the request.result!
+                    alert("song retrieved: " + thesong.result.toString());
+                    console.log(thesong.result);
+
+                };
+
+            }
 		
 		});
 	</script>
