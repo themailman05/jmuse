@@ -244,7 +244,6 @@
 			}
 
 			function writeToDB(file1, songName) {
-                openDB();
                 var transaction = db.transaction(["audioFiles"],"readwrite");
                 var store = transaction.objectStore("audioFiles");
                 console.log(file1);
@@ -266,7 +265,6 @@
 
             }
             function playFromDB(songName) {
-                openDB();
                 var transaction = db.transaction(["audioFiles"], "readwrite");
                 var store = transaction.objectStore("audioFiles");
                 thesong = store.get(songName);
@@ -283,7 +281,6 @@
             }
 
             function refreshPlaylist(){
-                openDB();
                 var transaction = db.transaction(["audioFiles"], "readwrite");
                 var store = transaction.objectStore("audioFiles");
                 objrequest = store.getAll();
