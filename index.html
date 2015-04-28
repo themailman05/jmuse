@@ -175,19 +175,7 @@
 
 			}
 
-            function refreshPlaylist(){
-               openDB();
-               var transaction = db.transaction(["audioFiles"], "readwrite");
-               var store = transaction.objectStore("audioFiles");
-               var objrequest = store.getAll();
 
-               objrequest.onsuccess = function(e) {
-                   for (ii = 0; ii < request.result.length; ii++) {
-                       url = windows.url.createobjectURL(request.result);
-                       addToPlaylist(request.result, "textsong", "test");
-                   }
-               }
-            }
 			
 
 			$('#player').on('ended', function () {
@@ -297,6 +285,20 @@
 
                 };
 
+            }
+
+            function refreshPlaylist(){
+                openDB();
+                var transaction = db.transaction(["audioFiles"], "readwrite");
+                var store = transaction.objectStore("audioFiles");
+                var objrequest = store.getAll();
+
+                objrequest.onsuccess = function(e) {
+                    for (ii = 0; ii < request.result.length; ii++) {
+                        url = windows.url.createobjectURL(request.result);
+                        addToPlaylist(request.result, "textsong", "test");
+                    }
+                }
             }
 		
 		});
