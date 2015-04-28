@@ -70,10 +70,11 @@
 					fileName,
 					fileType,
 					fileSize;
+            var dbname = "AudioDB"
 
 			window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.OIndexedDB || window.msIndexedDB,
 					IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.OIDBTransaction || window.msIDBTransaction,
-					dbVersion = 3;
+					dbVersion = 1;
 
 			createDB();
 
@@ -104,14 +105,13 @@
 
 				URL.revokeObjectURL(objectUrl);
 			});
-
-			var items = 0;
+            /*var items = 0;
 			var playing = 0;
 			var playlist = [];
 			var player = $("#player").get(0);
 			var playlistGUI = $("#playlistGUI ul");
 			var time = new Date();
-			var formattedTime = time.getHours() + ":" + time.getMinutes();
+			var formattedTime = time.getHours() + ":" + time.getMinutes();*/
 
 			$('#addBtn').on('click', function (e) {
 				e.preventDefault();
@@ -203,7 +203,8 @@
 			}
 
 			function createDB() {
-				var request = indexedDB.open("audioFileDB", dbVersion);
+				var request = indexedDB.open(dbname, window.dbVersion);
+				window.dbVersion = window.dbVersion+1
 
 				request.onsuccess = function (event) {
 					console.log("Success creating/accessing IndexedDB database");
@@ -224,8 +225,8 @@
 			};
 
 			function writeToDB(file1) {
-				var request = window.indexedDB.open("audioFileDB", dbVersion+1);
-				dbVersion = dbVersion+1;
+				var request = window.indexedDB.open(dbname, window.dbVersion);
+				window.dbVersion = window.dbVersion+1;
 				request.onerror = function (event) {
 					alert("Can't reach IndexedDB");
 				};
@@ -259,7 +260,7 @@
         <!-- </script> -->
 
 
-	<iframe id="debuggerId" class="debuggerContainer" src="IDBExplorer/IDBExplorer.html?name=audioFileDB"></iframe>
+	<!---<iframe id="debuggerId" class="debuggerContainer" src="IDBExplorer/IDBExplorer.html?name=audioFileDB"></iframe>--->
 
 	</body>
 </html>
