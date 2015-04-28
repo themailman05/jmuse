@@ -283,7 +283,7 @@
             }
 
             function refreshPlaylist(){
-                //openDB();
+                openDB();
                 var transaction = db.transaction(["audioFiles"], "readwrite");
                 var store = transaction.objectStore("audioFiles");
                 objrequest = store.getAll();
