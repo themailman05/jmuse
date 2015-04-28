@@ -57,7 +57,12 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
 	<script type="text/javascript">
+        window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.OIndexedDB || window.msIndexedDB,
+                IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.OIDBTransaction || window.msIDBTransaction,
+                dbVersion = 1;
+
 		$(document).ready(function() {
+
 			var items = 0,
 					playing = 0,
 					playlist = [],
@@ -72,18 +77,8 @@
 					fileSize;
             var dbname = "AudioDB"
 
-			window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.OIndexedDB || window.msIndexedDB,
-					IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.OIDBTransaction || window.msIDBTransaction,
-					dbVersion = 1;
-
             openDB();
-
-
             refreshPlaylist();
-
-
-
-
 
 			$("#temp").on("canplaythrough", function (e) {
 				var seconds = e.currentTarget.duration;
@@ -276,7 +271,7 @@
                 var store = transaction.objectStore("audioFiles");
                 thesong = store.get(songName);
                 thesong.onerror = function(event) {
-                    // Handle errors!
+                    console.log("OH FUCK LOADING SHITS BROKE");
                 };
                 thesong.onsuccess = function(event) {
                     // Do something with the request.result!
@@ -288,10 +283,10 @@
             }
 
             function refreshPlaylist(){
-                openDB();
+                //openDB();
                 var transaction = db.transaction(["audioFiles"], "readwrite");
                 var store = transaction.objectStore("audioFiles");
-                var objrequest = store.getAll();
+                objrequest = store.getAll();
 
                 objrequest.onsuccess = function(e) {
                     for (ii = 0; ii < request.result.length; ii++) {
