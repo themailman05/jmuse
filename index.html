@@ -280,7 +280,7 @@
 
             }
 
-            function refreshPlaylist(){
+            function refreshPlaylist(songName){
                 var transaction = db.transaction(["audioFiles"], "readwrite");
                 var store = transaction.objectStore("audioFiles");
                 objrequest = store.getAll();
