@@ -61,6 +61,9 @@
                 IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.OIDBTransaction || window.msIDBTransaction,
                 dbVersion = 1;
 
+            openDB();
+            refreshPlaylist();
+
 		$(document).ready(function() {
 
 			var items = 0,
@@ -76,9 +79,6 @@
 					fileType,
 					fileSize;
             var dbname = "AudioDB";
-
-            openDB();
-            refreshPlaylist();
 
 			$("#temp").on("canplaythrough", function (e) {
 				var seconds = e.currentTarget.duration;
