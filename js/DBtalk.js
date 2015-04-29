@@ -29,17 +29,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 thisDB.createObjectStore("audioFiles");
             }
 
-        }
+        };
 
         openRequest.onsuccess = function (e) {
             db = e.target.result;
             console.log("Success!");
-        }
+        };
 
         openRequest.onerror = function (e) {
             console.log("Error");
             console.dir(e);
-        }
+        };
 
         var items = 0,
             playing = 0,
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
         objrequest = store.indexNames;
         objrequest.onsuccess = function (e) {
             console.log("playlist names: " + objrequest.result.toString());
-            }
+           };
         }
 
 },false);
