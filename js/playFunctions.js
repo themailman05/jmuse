@@ -30,7 +30,7 @@
 
             time = time + duration.minutes() + ":" + seconds;
             duration = time;
-            $("#duration" + (items - 1)).text(duration);
+            $("#duration" + items).text(duration);
 
             /*URL.revokeObjectURL(objectUrl);*/
         });
