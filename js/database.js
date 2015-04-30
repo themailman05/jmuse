@@ -123,13 +123,16 @@ function getSong(key) {
 function getAllSongs(){
     var transaction = db.transaction(["songs"],"readonly");
     var store = transaction.objectStore("songs");
+    var temp;
 
     songList = [];
 
     store.openCursor().onsuccess = function(event) {
         var cursor = event.target.result;
         if (cursor) {
-            songList.push(cursor.value);
+            temp = cursor.value;
+            songList.push(temp);
+        	populatePlaylistDOM(temp);
             console.log("added " + cursor.value.title + "to songList.");
             cursor.continue();
         }
