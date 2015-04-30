@@ -8,15 +8,15 @@ document.addEventListener("DOMContentLoaded", function(){
     }
  
     if(idbSupported) {
-        var openRequest = indexedDB.open("audioStorage",3);
+        var openRequest = indexedDB.open("audioStorage",5);
  
         openRequest.onupgradeneeded = function(e) {
             console.log("Upgrading...");
             var localDB = e.target.result;
  
             if(!localDB.objectStoreNames.contains("songs")) {
-                var store = localDB.createObjectStore("songs", {keyPath:'keyPath',
-                    autoIncrement: true});
+                var store = localDB.createObjectStore("songs",
+                    {autoIncrement: true});
                 store.createIndex('title', 'title', {unique: true});
             }
  
@@ -101,12 +101,11 @@ function getSongMeta(key) {
     var store = transaction.objectStore("songs");
     request = store.get(key);
     request.onsuccess = function(e){
-        console.log("Result: " + e.result.toString());
+        console.log("Result: " + request.result);
 
     };
     request.onerror = function(e){
         console.log("OH FUCK COULDNT FIND THAT SHIT IN THE DB");
     };
-
 
 };
