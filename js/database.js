@@ -3,6 +3,7 @@ var idbSupported = false,
     playlist = [];
  
 document.addEventListener("DOMContentLoaded", function(){
+
  
     if("indexedDB" in window) {
         idbSupported = true;

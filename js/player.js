@@ -7,20 +7,21 @@ var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 var source;
 var freqDomain;
 
-var canvas = document.querySelector('#viz');
-var canvasCtx = canvas.getContext("2d");
 
 
 function loadSong(songBuffer){
     source = audioCtx.createBufferSource();
+    analyzer = audioCtx.createAnalyser();
 
     audioCtx.decodeAudioData(songBuffer, function(buffer) {
 
         source.buffer = buffer;
-        source.connect(audioCtx.destination);
+        source.connect(analyzer);
+        analyzer.connect(audioCtx.destination);
         source.loop = false;
 
         source.start(0);
+        visualize();
     });
 }
 
@@ -36,12 +37,12 @@ function getDuration(song){
 	
 
 function visualize(){
+    var canvas = document.getElementById("viz");
+    var canvasCtx = canvas.getContext("2d");
     WIDTH = canvas.width;
     HEIGHT = canvas.height;
-    analyzer = audioCtx.createAnalyzer();
-    source.disconnect();
-    source.connect(analyzer);
-    analyzer.connect(audioCtx.destination);
+
+
     analyzer.fftsize = 2048;
     var bufferLength = analyzer.frequencyBinCount;
     var dataArray = new Uint8Array(bufferLength);
