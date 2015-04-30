@@ -30,7 +30,7 @@
 
             time = time + duration.minutes() + ":" + seconds;
             duration = time;
-            $("#duration" + items).text(duration);
+            $("#duration" + (items - 1)).text(duration);
 
             /*URL.revokeObjectURL(objectUrl);*/
         });
@@ -89,7 +89,7 @@
         });
 
         function populatePlaylistDOM(song) {
-            $("#playlistGUI").append('<li id="song' + items + '"><div class="collapsible-header">' + song.title + ' - ' + song.artist + '</div><div class="collapsible-body"><p>Song Title: ' + song.title + '<br />Artist: ' + song.artist + '<br />Duration: <span id="duration' + (items - 1) + '"></span></p></div></li>');
+            $("#playlistGUI").append('<li id="song' + (items - 1) + '"><div class="collapsible-header">' + song.title + ' - ' + song.artist + '</div><div class="collapsible-body"><p>Song Title: ' + song.title + '<br />Artist: ' + song.artist + '<br />Duration: <span id="duration' + (items - 1) + '"></span></p></div></li>');
         }
 
         function updateTotal() {
@@ -98,7 +98,7 @@
 
         function playNext() {
             playing++;
-            if (playing == items) {
+            if (playing == (items-1)) {
                 playing = 0;
             }
 

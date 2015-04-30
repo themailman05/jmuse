@@ -1,6 +1,6 @@
 var idbSupported = false,
 	db,
-    playlist = [];
+    playlist;
  
 document.addEventListener("DOMContentLoaded", function(){
  
