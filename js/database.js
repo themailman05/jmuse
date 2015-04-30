@@ -14,9 +14,16 @@ document.addEventListener("DOMContentLoaded", function(){
         openRequest.onupgradeneeded = function(e) {
             console.log("Upgrading...");
             var db = e.target.result;
+
+
  
             if(!db.objectStoreNames.contains("songs")) {
-                db.createObjectStore("songs");
+                store = db.currentTarget.result.createObjectStore("songs",
+                    {keyPath: 'id', autoIncrement: true});
+                store.createIndex('title', 'title', {unique: false});
+                store.createIndex('artist', 'artist', {unique:false});
+                store.createIndex('file', 'file', {unique:false});
+                store.createIndex('id','id', {unique:true});
             }
  
         };
