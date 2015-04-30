@@ -4,36 +4,8 @@
 
 		var items = 0,
             playing = 1,
-            playlistGUI = $("#playlistGUI ul"),
-            time = new Date(),
-            formattedTime = time.getHours() + ":" + time.getMinutes();
+            playlistGUI = $("#playlistGUI ul");
 
-        $("#temp").on("canplaythrough", function (e) {
-            var seconds = e.currentTarget.duration;
-            var duration = moment.duration(seconds, "seconds");
-            var time = "";
-            var hours = duration.hours();
-            var minutes = duration.minutes();
-            var seconds = duration.seconds();
-            if (hours > 0) {
-                time = hours + ":";
-            }
-            if (minutes == 0) {
-                minutes = "00";
-            }
-            if (seconds < 10 && seconds != 0) {
-                seconds = "0" + seconds;
-            }
-            else if (seconds == 0) {
-                seconds = "00";
-            }
-
-            time = time + duration.minutes() + ":" + seconds;
-            duration = time;
-            $("#duration" + (items - 1)).text(duration);
-
-            /*URL.revokeObjectURL(objectUrl);*/
-        });
 
         $('#addBtn').on('click', function (e) {
             e.preventDefault();
@@ -47,7 +19,7 @@
             else
             {
 
-                var songObject = getSong(playing);
+                var songObject = playlist[playing];
                 var processed = processSong(songObject);
                 beginPlaying(processed);
 
@@ -74,7 +46,7 @@
         
         function playNext() {
         	playing++;
-        	var songObject = getSong(playing);
+        	var songObject = playlist[playing];
             var processed = processSong(songObject);
             beginPlaying(processed);
 
