@@ -1,7 +1,7 @@
 var idbSupported = false,
 	db;
 
-window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder ||
+var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder ||
     window.MozBlobBuilder;
  
 document.addEventListener("DOMContentLoaded", function(){
@@ -72,7 +72,7 @@ function addSong(file, title, artist)
 }
 
 function blobber(file){
-    var bb = new BlobBuilder();
+    var bb = BlobBuilder;
     bb.append(file);
     var audioBlob = bb.getBlob();
     if (audioBlob) {
