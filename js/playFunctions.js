@@ -22,7 +22,7 @@
                 var songObject = playlist[playing-1].file;
                 beginPlaying(songObject);
 
-				processed.onended = function() {
+				songObject.onended = function() {
 					console.log('Playing next song in queue.');
 					playNext();
 				};
@@ -34,8 +34,8 @@
         });
         
         function beginPlaying(thisSong) {
-			setTimeout(function(){console.log("waiting for load"); loadSong(thisSong); }, 100);
-        }
+			loadSong(thisSong);
+		}
         
         function playNext() {
         	playing++;
