@@ -51,6 +51,7 @@
 		}
 		
 		function resumePlaying() {
+            songBuffer = playlist[playing-1].file;
 		    loadSong(songBuffer, resumeTime);
 			paused = false;
 		}
