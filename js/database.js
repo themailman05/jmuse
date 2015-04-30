@@ -76,7 +76,7 @@ function addSong(file, title, artist)
 
 }
 
-function getSongs()
+function getSongKeys()
 {
     songlist = [];
 
@@ -85,13 +85,12 @@ function getSongs()
     store.index('title').openKeyCursor().onsuccess = function(evt){
         var cursor = evt.target.result;
         if (cursor) {
-            songlist.push({title:cursor.key, artists:cursor.value.artist,
-                file:URL.createObjectURL(cursor.value.file)});
+            songlist.push(cursor.key);
             cursor.continue();
         }
         else {
             for (ii = 0; ii<songlist.length; ii++){
-                console.log("Song item: " + songlist[ii].title.toString());
+                console.log("Song item: " + songlist[ii].toString());
 
             }
         }
@@ -99,3 +98,19 @@ function getSongs()
 
 
 };
+
+function getSongMeta(key)
+{
+    var transaction = db.transaction(["songs"],"readonly");
+    var store = transaction.objectStore("songs");
+    request = store.get(key);
+    request.onsuccess = function(e){
+        console.log("Result: " + e.result.toString());
+
+    };
+    request.onerror = function(e){
+        console.log("OH FUCK COULDNT FIND THAT SHIT IN THE DB");
+    };
+
+
+}

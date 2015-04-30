@@ -114,7 +114,8 @@ var items = 0,
         }
 
         function clearPlaylist() {
-            getSongs();
+            getSongKeys();
+            getSongMeta("hoodlums");
             $("#playlistGUI").empty();
             items = 0;
             playing = 0;
