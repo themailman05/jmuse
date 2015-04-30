@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(){
             console.log("Success!");
             db = e.target.result;
             playlist = getAllSongs();
-            setTimeout(populatePlaylist(), 100);
+            populatePlaylist();
         };
  
         openRequest.onerror = function(e) {
@@ -65,8 +65,6 @@ function addSong(file, title, artist)
         };
 
         var request = store.add(song);
-        updateTotal();
-        playlist[items] = song;
         populatePlaylistDOM(song);
 
         request.onerror = function(e) {
@@ -145,6 +143,7 @@ function getAllSongs(){
 }
 
 function populatePlaylist() {
+        updateTotal();
 	for (i = 0; i < playlist.length; i++) { 
    		addToPlaylist(playlist[i]);
 	}
