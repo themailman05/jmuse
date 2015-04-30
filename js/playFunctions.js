@@ -54,7 +54,10 @@ var items = 0,
             else {
                 if (player.paused) { //rewrite for WebAudio functions
                     player.src = playlist[playing];
-                    player.play();
+                    //player.play();
+                    songObject = getSong(1);
+                    window.setTimeout(loadSong(songObject.file),1000);
+
                     $("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
 
                     //playFromDB("ID SONG NAME"); //TODO: implement database driven playback
