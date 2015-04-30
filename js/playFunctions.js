@@ -56,8 +56,12 @@ var items = 0,
                 if (player.paused) { //rewrite for WebAudio functions
                     player.src = playlist[playing];
                     //player.play();
+
                     songObject = getSong(1);
-                    window.setTimeout(loadSong(songObject.file),1000);
+
+                    setTimeout(function(){console.log("waiting for load"); loadSong(songObject.file)}, 1000);
+
+
 
                     $("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
 
