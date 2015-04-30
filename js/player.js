@@ -30,8 +30,7 @@ function getDuration(song){
 
     audioCtx.decodeAudioData(song, function(buffer) {
 
-        source.buffer = buffer;
-        return source.duration;
+        return buffer.durration;
     });
 }
 	
