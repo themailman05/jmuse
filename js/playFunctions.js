@@ -56,7 +56,7 @@ var items = 0,
                     player.src = playlist[playing];
                     player.play();
                     $("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
-                    getSongs();
+
                     //playFromDB("ID SONG NAME"); //TODO: implement database driven playback
                 }
                 else {
@@ -114,6 +114,7 @@ var items = 0,
         }
 
         function clearPlaylist() {
+            getSongs();
             $("#playlistGUI").empty();
             items = 0;
             playing = 0;

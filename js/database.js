@@ -59,7 +59,7 @@ function addSong(file, title, artist)
         var song = {
             title:title,
             artist:artist,
-            file:theblob
+            file:tempFile
         };
 
         var request = store.add(song);
@@ -84,7 +84,7 @@ function getSongs()
 
     var transaction = db.transaction(["songs"],"readonly");
     var store = transaction.objectStore("songs");
-    store.index('id').openKeyCursor().onsuccess = function(evt){
+    store.index('title').openKeyCursor().onsuccess = function(evt){
         var cursor = evt.target.result;
         if (cursor) {
             songlist.push(cursor.value);
