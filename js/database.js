@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 var store = localDB.createObjectStore("songs", {keyPath:'keyPath',
                     autoIncrement: true});
                 store.createIndex('title', 'title', {unique: true});
-                store.createIndex('keyPath','keyPath', {unique: true});
             }
  
         };
