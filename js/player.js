@@ -9,7 +9,7 @@ var freqDomain;
 
 
 
-function loadSong(songBuffer){
+function loadSong(songBuffer, resumeTime){
     source = audioCtx.createBufferSource();
     analyzer = audioCtx.createAnalyser();
 
@@ -19,10 +19,21 @@ function loadSong(songBuffer){
         source.connect(analyzer);
         analyzer.connect(audioCtx.destination);
         source.loop = false;
+        isPlaying = true;
 
-        source.start(0);
+        source.start(resumeTime);
         visualize();
     });
+    
+	source.onended = function() {
+		if(!paused)
+		{
+			console.log('Playing next song in queue.');
+			isPlaying = false;
+			playNext();
+		}
+	};
+
 }	
 
 function visualize(){

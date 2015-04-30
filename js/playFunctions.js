@@ -4,7 +4,12 @@
 
 		var items = 0,
             playing = 1,
-            playlistGUI = $("#playlistGUI ul");
+            paused = true,
+            isPlaying = false,
+            playlistGUI = $("#playlistGUI ul"),
+            songBuffer,
+            startTime = 0,
+            resumeTime = 0;
 
 
         $('#addBtn').on('click', function (e) {
@@ -18,36 +23,54 @@
             }
             else
             {
-
-                var songObject = playlist[playing-1].file;
-                beginPlaying(songObject);
-
-				songObject.onended = function() {
-					console.log('Playing next song in queue.');
-					playNext();
-				};
-
-                $("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
+            	if(paused && !isPlaying)
+            	{
+                	beginPlaying();
+                	$("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
+                }
+                else if(paused && isPlaying)
+            	{
+                	resumePlaying();
+                	$("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
+                }
+                else
+                {
+                	pause();
+            		$("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play-arrow");
+                }
+                
 
                 //playFromDB("ID SONG NAME"); //TODO: implement database driven playback
             }
         });
         
-        function beginPlaying(thisSong) {
-			loadSong(thisSong);
+        function beginPlaying() {
+            songBuffer = playlist[playing-1].file;
+			loadSong(songBuffer, 0);
+			paused = false;
+		}
+		
+		function resumePlaying() {
+		    loadSong(songBuffer, resumeTime);
+			paused = false;
 		}
         
         function playNext() {
         	playing++;
-        	var songObject = playlist[playing];
-            var processed = processSong(songObject);
-            beginPlaying(processed);
+        	songBuffer = playlist[playing];
+            beginPlaying(songBuffer);
 
 			processed.onended = function() {
 				console.log('Playing next song in queue.');
 				playNext();
 			};
         }
+        
+        function pause() {
+  			source.stop(0);
+			paused = true;
+  			resumeTime = 10;
+		}
 
         $("#clearBtn").click(function () {
             clearPlaylist();
@@ -72,21 +95,6 @@
 
         function updateTotal() {
             items++;
-        }
-
-        function playNext() {
-            playing++;
-            if (playing == (items-1)) {
-                playing = 0;
-            }
-
-            player.src = playlist[playing];
-            player.play();
-
-        }
-
-        function getTime() {
-            return formattedTime;
         }
 
         function clearPlaylist() {
