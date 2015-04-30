@@ -44,7 +44,7 @@ function addSong(file, title, artist)
     console.log("About to add "+title+"/"+artist);
     
     var transaction = db.transaction(["songs"],"readwrite");
-    var store = transaction.objectStore("songs", i);
+    var store = transaction.objectStore("songs", 1);
  
 	//create the song object
     var song = {
