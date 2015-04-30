@@ -96,7 +96,7 @@ function getSongKeys() {
 
 };
 
-function getSongMeta(key) {
+function getSong(key) {
     var transaction = db.transaction(["songs"],"readonly");
     var store = transaction.objectStore("songs");
     request = store.get(key);
