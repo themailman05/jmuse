@@ -1,5 +1,8 @@
 var idbSupported = false,
 	db;
+
+window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder ||
+    window.MozBlobBuilder;
  
 document.addEventListener("DOMContentLoaded", function(){
  
@@ -18,9 +21,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 store = db.currentTarget.result.createObjectStore("songs",
                     {keyPath: 'id', autoIncrement: true});
                 store.createIndex('title', 'title', {unique: false});
-                store.createIndex('artist', 'artist', {unique:false});
-                store.createIndex('file', 'file', {unique:false});
-                store.createIndex('id','id', {unique:true});
             }
  
         };
@@ -42,9 +42,13 @@ document.addEventListener("DOMContentLoaded", function(){
 function addSong(file, title, artist)
 {
     console.log("About to add "+title+"/"+artist);
+
+
     
     var transaction = db.transaction(["songs"],"readwrite");
     var store = transaction.objectStore("songs", 1);
+
+    file = blobber(file);
  
 	//create the song object
     var song = {
@@ -65,4 +69,17 @@ function addSong(file, title, artist)
         console.log("Song " + title + " successfully added.");
         i++;
     };
+}
+
+function blobber(file){
+    var bb = new BlobBuilder();
+    bb.append(file);
+    var audioBlob = bb.getBlob();
+    if (audioBlob) {
+        console.log("File blobbed successfully");
+    }
+    else{
+        console.log("File is unblobbable.");
+    }
+    return audioBlob;
 }
