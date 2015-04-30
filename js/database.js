@@ -51,7 +51,7 @@ function addSong(file, title, artist)
 
     
     var transaction = db.transaction(["songs"],"readwrite");
-    var store = transaction.objectStore("songs", {keyPath: 'id', autoIncrement: true});
+    var store = transaction.objectStore("songs", 1);
  
 	//create the song object
     var song = {
@@ -61,7 +61,7 @@ function addSong(file, title, artist)
     };
  
  	//add song to database
-    var request = store.add(song);
+    var request = store.add(song, {keyPath: 'id', autoIncrement: true});
     
     request.onerror = function(e) {
         console.log("Error", e.target.error.name);
