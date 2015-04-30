@@ -14,8 +14,6 @@ document.addEventListener("DOMContentLoaded", function(){
         openRequest.onupgradeneeded = function(e) {
             console.log("Upgrading...");
             var db = e.target.result;
-
-
  
             if(!db.objectStoreNames.contains("songs")) {
                 store = db.currentTarget.result.createObjectStore("songs",
