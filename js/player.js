@@ -12,6 +12,6 @@ function loadSong(songBuffer){
         source.buffer = buffer;
         source.connect(audioCtx.destination);
         source.loop = true;
-        source.start(0)
+        source.start(0);
     });
 };
