@@ -61,8 +61,8 @@ function addSong(file, title, artist)
         var song = {
             title:title,
             artist:artist,
-            file:tempFile,
-            duration:getDuration(tempFile)
+            duration:getDuration(tempFile),
+            file:tempFile
         };
 
         var request = store.add(song);
