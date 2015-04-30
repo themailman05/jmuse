@@ -126,7 +126,7 @@ function getAllSongs(){
         var cursor = event.target.result;
         if (cursor) {
             songList.push(cursor.value);
-            console.log("added " + cursor.value.title + "to songList.")
+            console.log("added " + cursor.value.title + "to songList.");
             cursor.continue();
         }
         else {
