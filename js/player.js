@@ -27,8 +27,9 @@ function loadSong(songBuffer){
 function getDuration(song){
     source = audioCtx.createBufferSource();
 
-    audioCtx.decodeAudioData(songBuffer, function(buffer) {
+    audioCtx.decodeAudioData(song, function(buffer) {
 
+        source.buffer = buffer;
         return source.duration;
     });
 }
