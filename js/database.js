@@ -76,8 +76,7 @@ function addSong(file, title, artist)
 
 }
 
-function getSongKeys()
-{
+function getSongKeys() {
     songlist = [];
 
     var transaction = db.transaction(["songs"],"readonly");
@@ -91,7 +90,6 @@ function getSongKeys()
         else {
             for (ii = 0; ii<songlist.length; ii++){
                 console.log("Song item: " + songlist[ii].toString());
-
             }
         }
     }; // here id is primary key path
@@ -99,8 +97,7 @@ function getSongKeys()
 
 };
 
-function getSongMeta(key)
-{
+function getSongMeta(key) {
     var transaction = db.transaction(["songs"],"readonly");
     var store = transaction.objectStore("songs");
     request = store.get(key);
@@ -113,4 +110,4 @@ function getSongMeta(key)
     };
 
 
-}
+};
