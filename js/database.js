@@ -15,8 +15,10 @@ document.addEventListener("DOMContentLoaded", function(){
             var localDB = e.target.result;
  
             if(!localDB.objectStoreNames.contains("songs")) {
-                var store = localDB.createObjectStore("songs", {autoIncrement: true});
+                var store = localDB.createObjectStore("songs", {keyPath:'keyPath',
+                    autoIncrement: true});
                 store.createIndex('title', 'title', {unique: true});
+                store.createIndex('keyPath','keyPath', {unique: true});
             }
  
         };
@@ -72,6 +74,26 @@ function addSong(file, title, artist)
         };
     };
  
+
+
+}
+
+function getSongs()
+{
+    songlist = [];
+
+    var transaction = db.transaction(["songs"],"readonly");
+    var store = transaction.objectStore("songs");
+    store.index('id').openKeyCursor().onsuccess = function(evt){
+        var cursor = evt.target.result;
+        if (cursor) {
+            songlist.push(cursor.value);
+            cursor.continue();
+        }
+        else {
+            alert("Got all songs: " + songlist.toString());
+        }
+    } // here id is primary key path
 
 
 }

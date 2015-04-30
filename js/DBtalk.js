@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function playFromDB(songName) {
+        getSongs();
         var transaction = db.transaction(["audioFiles"], "readonly");
         var store = transaction.objectStore("audioFiles");
         thesong = store.get(songName);
