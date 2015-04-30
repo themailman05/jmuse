@@ -52,8 +52,7 @@
 
                     songObject = getSong(1);
 
-                    console.log("waiting for load");
-                    loadSong(songObject.file);
+                    setTimeout(function(){console.log("waiting for load"); loadSong(songObject.file);}, 100);
 
 
 

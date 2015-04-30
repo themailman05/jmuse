@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(){
             console.log("Success!");
             db = e.target.result;
             playlist = getAllSongs();
-            populatePlaylist();
+            setTimeout(populatePlaylist(), 100);
         };
  
         openRequest.onerror = function(e) {
