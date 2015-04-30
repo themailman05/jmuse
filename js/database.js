@@ -101,7 +101,7 @@ function getSong(key) {
     var store = transaction.objectStore("songs");
     request = store.get(key);
     request.onsuccess = function(e){
-        songObject = request.result
+        songObject = request.result;
         songObject.file = URL.getObjectURL(songObject.file);
         console.log("Result: " + songObject.title + "/" + songObject.artist + "/"
         + songObject.file);
