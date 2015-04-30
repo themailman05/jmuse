@@ -19,7 +19,7 @@
             else
             {
 
-                var songObject = playlist[playing].file;
+                var songObject = playlist[playing-1].file;
                 beginPlaying(songObject);
 
 				processed.onended = function() {
