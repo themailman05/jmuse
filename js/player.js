@@ -18,11 +18,21 @@ function loadSong(songBuffer){
 
         source.buffer = buffer;
         source.connect(audioCtx.destination);
-        source.loop = true;
+        source.loop = false;
 
         source.start(0);
     });
-};
+}
+
+function getDuration(song){
+    source = audioCtx.createBufferSource();
+
+    audioCtx.decodeAudioData(songBuffer, function(buffer) {
+
+        return source.duration;
+    });
+}
+	
 
 function visualize(){
     WIDTH = canvas.width;
@@ -70,5 +80,5 @@ function visualize(){
     };
     draw();
 
-};
+}
 
