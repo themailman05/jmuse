@@ -93,7 +93,7 @@ function getSongs()
         else {
             alert("Got all songs: " + songlist.toString());
         }
-    } // here id is primary key path
+    }; // here id is primary key path
 
 
-}
+};
