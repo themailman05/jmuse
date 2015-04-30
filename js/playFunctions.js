@@ -88,14 +88,7 @@
             playNext();
         });
 
-        function addToPlaylist(song) {
-            updateTotal();
-            $("#playlistGUI").append('<li id="song' + items + '"><div class="collapsible-header">' + song.title + ' - ' + song.artist + '</div><div class="collapsible-body"><p>Song Title: ' + song.title + '<br />Artist: ' + song.artist + '<br />Duration: <span id="duration' + (items - 1) + '"></span></p></div></li>');
-            playlist[items] = song;
-        }
-
         function populatePlaylistDOM(song) {
-            updateTotal();
             $("#playlistGUI").append('<li id="song' + items + '"><div class="collapsible-header">' + song.title + ' - ' + song.artist + '</div><div class="collapsible-body"><p>Song Title: ' + song.title + '<br />Artist: ' + song.artist + '<br />Duration: <span id="duration' + (items - 1) + '"></span></p></div></li>');
         }
 

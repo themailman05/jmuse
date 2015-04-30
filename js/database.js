@@ -65,7 +65,9 @@ function addSong(file, title, artist)
         };
 
         var request = store.add(song);
-        addToPlaylist(song);
+        updateTotal();
+        playlist[items] = song;
+        populatePlaylistDOM(song);
 
         request.onerror = function(e) {
             console.log("Error", e.target.error.name);
