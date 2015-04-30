@@ -4,8 +4,6 @@
 
 var items = 0,
             playing = 1,
-            playlist = [],
-            player = $("#player").get(0),
             playlistGUI = $("#playlistGUI ul"),
             time = new Date(),
             formattedTime = time.getHours() + ":" + time.getMinutes(),
@@ -48,11 +46,6 @@ var items = 0,
         });
 
         $("#playBtn").click(function () {
-            if (items == 0) {
-                alert("Playlist Empty");
-            }
-            else
-            {
                 if (player.paused) { //rewrite for WebAudio functions
                     player.src = playlist[playing];
                     //player.play();
@@ -71,7 +64,6 @@ var items = 0,
                     player.pause();
                     $("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play-arrow");
                 }
-            }
         });
 
         $("#clearBtn").click(function () {
