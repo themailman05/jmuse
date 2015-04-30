@@ -61,7 +61,7 @@ function addSong(file, title, artist)
         var song = {
             title:title,
             artist:artist,
-            duration:artist,
+            duration:getDuration(tempFile),
             file:tempFile
         };
 
@@ -74,7 +74,7 @@ function addSong(file, title, artist)
         };
 
         request.onsuccess = function(e) {
-            console.log("Song " + title + " successfully added.");
+            console.log("Song " + title + " successfully added. " + duration);
         };
     };
  
