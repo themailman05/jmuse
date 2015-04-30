@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
  
     if(idbSupported) {
-        var openRequest = indexedDB.open("audioStorage",6);
+        var openRequest = indexedDB.open("audioStorage",7);
  
         openRequest.onupgradeneeded = function(e) {
             console.log("Upgrading...");
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
  
             if(!localDB.objectStoreNames.contains("songs")) {
                 var store = localDB.createObjectStore("songs",
-                    {keyPath:"title", autoIncrement: true});
+                    {keyPath:"keyPath", autoIncrement: true});
                 store.createIndex('title', 'title', {unique: true});
             }
  
@@ -101,7 +101,7 @@ function getSongMeta(key) {
     var store = transaction.objectStore("songs");
     request = store.get(key);
     request.onsuccess = function(e){
-        console.log("Result: " + request.result);
+        console.log("Result: " + request.result.title + "/" + request.result.artist);
 
     };
     request.onerror = function(e){
