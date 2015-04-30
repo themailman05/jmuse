@@ -1,6 +1,6 @@
 var idbSupported = false,
 	db,
-    playlist;
+    playlist = [];
  
 document.addEventListener("DOMContentLoaded", function(){
  
@@ -125,11 +125,13 @@ function getAllSongs(){
     var store = transaction.objectStore("songs");
     var temp;
 
+    songList = [];
+
     store.openCursor().onsuccess = function(event) {
         var cursor = event.target.result;
         if (cursor) {
             temp = cursor.value;
-            playlist.push(temp);
+            songList.push(temp);
         	populatePlaylistDOM(temp);
             console.log("added " + cursor.value.title + "to songList.");
             cursor.continue();
@@ -138,6 +140,7 @@ function getAllSongs(){
             console.log("No more entries!");
         }
     };
+    return songList;
 
 }
 
