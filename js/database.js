@@ -125,13 +125,11 @@ function getAllSongs(){
     var store = transaction.objectStore("songs");
     var temp;
 
-    songList = [];
-
     store.openCursor().onsuccess = function(event) {
         var cursor = event.target.result;
         if (cursor) {
             temp = cursor.value;
-            songList.push(temp);
+            playlist.push(temp);
         	populatePlaylistDOM(temp);
             console.log("added " + cursor.value.title + "to songList.");
             cursor.continue();
@@ -140,7 +138,6 @@ function getAllSongs(){
             console.log("No more entries!");
         }
     };
-    return songList;
 
 }
 
