@@ -50,7 +50,7 @@
                     player.src = playlist[playing];
                     //player.play();
 
-                    songObject = getSong(1);
+                    songObject = getSong(playing);
 
                     setTimeout(function(){console.log("waiting for load"); loadSong(songObject.file); }, 100);
 
