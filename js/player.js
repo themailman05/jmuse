@@ -11,13 +11,12 @@ var freqDomain;
 
 function loadSong(songBuffer, resumeTime){
     source = audioCtx.createBufferSource();
-    analyzer = audioCtx.createAnalyser();
 
     audioCtx.decodeAudioData(songBuffer, function(buffer) {
 
         source.buffer = buffer;
-        source.connect(analyzer);
-        analyzer.connect(audioCtx.destination);
+        source.connect(audioCtx.destination);
+
         source.loop = false;
         isPlaying = true;
 
@@ -41,18 +40,20 @@ function visualize(){
     var canvasCtx = canvas.getContext("2d");
     WIDTH = canvas.width;
     HEIGHT = canvas.height;
-
-
-    analyzer.fftsize = 2048;
-    var bufferLength = analyzer.frequencyBinCount;
+    analyser = audioCtx.createAnalyser();
+    source.disconnect();
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+    analyser.fftsize = 2048;
+    var bufferLength = analyser.frequencyBinCount;
     var dataArray = new Uint8Array(bufferLength);
-    analyzer.getByteTimeDomainArray(dataArray);
+    analyser.getByteTimeDomainData(dataArray);
 
     function draw() {
         drawvisual = requestAnimationFrame(draw);
-        analyzer.getByteTimeDomainArray(dataArray);
+        analyser.getByteTimeDomainData(dataArray);
 
-        canvasCtx.fillstyle = 'rgb(255, 167, 38)';
+        canvasCtx.fillStyle = 'rgb(255, 167, 38)';
         canvasCtx.fillRect(0,0,WIDTH,HEIGHT);
 
         canvasCtx.lineWidth =2;
