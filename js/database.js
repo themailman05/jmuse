@@ -59,7 +59,7 @@ function addSong(file, title, artist)
         };
 
         var transaction = db.transaction(["songs"],"readwrite");
-        var store = transaction.objectStore("songs", 1);
+        var store = transaction.objectStore("songs");
 
         var request = store.add(song);
 
