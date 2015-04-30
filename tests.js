@@ -1,1 +1,3 @@
-QUnit.test()
+QUnit.test("write DB", function( assert ){
+	
+})

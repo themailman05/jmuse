@@ -44,6 +44,9 @@
             }
         });
         
+        function beginPlaying(thisSong) {
+			loadSong(thisSong);
+        }
         function beginPlaying() {
             songBuffer = playlist[playing-1].file;
 			loadSong(songBuffer, 0);
@@ -54,6 +57,7 @@
             songBuffer = playlist[playing-1].file;
 		    loadSong(songBuffer, resumeTime);
 			paused = false;
+
 		}
         
         function playNext() {
@@ -61,10 +65,8 @@
         	songBuffer = playlist[playing];
             beginPlaying(songBuffer);
 
-			processed.onended = function() {
-				console.log('Playing next song in queue.');
-				playNext();
-			};
+			
+			
         }
         
         function pause() {
@@ -73,6 +75,11 @@
   			resumeTime = audioCtx.currentTime - startTime;
 		}
 
+        $("#forwardBtn").click(function () {
+        	source.stop(0);
+        	playNext();
+        });
+        
         $("#clearBtn").click(function () {
             clearPlaylist();
         });
