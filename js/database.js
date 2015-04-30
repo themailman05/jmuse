@@ -102,10 +102,9 @@ function getSong(key) {
     request = store.get(key);
     request.onsuccess = function(e){
         songObject = request.result;
-        songObject.file = URL.getObjectURL(songObject.file);
         console.log("Result: " + songObject.title + "/" + songObject.artist + "/"
         + songObject.file);
-
+        return songObject
     };
     request.onerror = function(e){
         console.log("OH FUCK COULDNT FIND THAT SHIT IN THE DB");

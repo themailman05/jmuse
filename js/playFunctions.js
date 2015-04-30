@@ -52,7 +52,7 @@ var items = 0,
                 alert("Playlist Empty");
             }
             else {
-                if (player.paused) {
+                if (player.paused) { //rewrite for WebAudio functions
                     player.src = playlist[playing];
                     player.play();
                     $("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
