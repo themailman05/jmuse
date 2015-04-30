@@ -64,7 +64,7 @@
         	playing++;
         	songBuffer = playlist[playing];
             beginPlaying(songBuffer);
-            $("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play-arrow");
+                	$("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
 
         }
         
