@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function(){
             console.log("Success!");
             db = e.target.result;
             playlist = getAllSongs();
+            populatePlaylist();
         };
  
         openRequest.onerror = function(e) {
@@ -98,7 +99,7 @@ function getSongKeys() {
     }; // here id is primary key path
 
 
-};
+}
 
 function getSong(key) {
     var transaction = db.transaction(["songs"],"readonly");
@@ -114,7 +115,7 @@ function getSong(key) {
         console.log("OH FUCK COULDNT FIND THAT SHIT IN THE DB");
     };
 
-};
+}
 
 function getAllSongs(){
     var transaction = db.transaction(["songs"],"readonly");
@@ -135,4 +136,11 @@ function getAllSongs(){
     };
     return songList;
 
-};
+}
+
+function populatePlaylist() {
+	for (i = 0; i < playlist.length; i++) { 
+   		addToPlaylist(playlist[i]);
+	}
+
+}
