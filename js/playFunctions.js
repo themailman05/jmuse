@@ -51,7 +51,8 @@ var items = 0,
             if (items == 0) {
                 alert("Playlist Empty");
             }
-            else {
+            else
+            {
                 if (player.paused) { //rewrite for WebAudio functions
                     player.src = playlist[playing];
                     //player.play();

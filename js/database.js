@@ -104,7 +104,7 @@ function getSong(key) {
         songObject = request.result;
         console.log("Result: " + songObject.title + "/" + songObject.artist + "/"
         + songObject.file);
-        return songObject
+        return songObject;
     };
     request.onerror = function(e){
         console.log("OH FUCK COULDNT FIND THAT SHIT IN THE DB");
