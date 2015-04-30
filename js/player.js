@@ -25,6 +25,8 @@ function loadSong(songBuffer){
 };
 
 function visualize(){
+    WIDTH = canvas.width;
+    HEIGHT = canvas.height;
     analyzer = audioCtx.createAnalyzer();
     source.disconnect();
     source.connect(analyzer);
