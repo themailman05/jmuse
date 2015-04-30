@@ -115,7 +115,7 @@ var items = 0,
 
         function clearPlaylist() {
             getSongKeys();
-            getSongMeta(1);
+            getSong(1);
             $("#playlistGUI").empty();
             items = 0;
             playing = 0;
