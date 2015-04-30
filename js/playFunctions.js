@@ -3,7 +3,7 @@
  */
 
 var items = 0,
-            playing = 0,
+            playing = 1,
             playlist = [],
             player = $("#player").get(0),
             playlistGUI = $("#playlistGUI ul"),
@@ -96,10 +96,10 @@ var items = 0,
             playNext();
         });
 
-        function addToPlaylist(itemToAdd, songName, artist) {
+        function addToPlaylist(song) {
             updateTotal();
-            $("#playlistGUI").append('<li id="song' + (items - 1) + '"><div class="collapsible-header">' + songName + ' - ' + artist + '</div><div class="collapsible-body"><p>Song Title: ' + songName + '<br />Artist: ' + artist + '<br />Duration: <span id="duration' + (items - 1) + '"></span></p></div></li>');
-            playlist[items - 1] = itemToAdd;
+            $("#playlistGUI").append('<li id="song' + (items - 1) + '"><div class="collapsible-header">' + song.title + ' - ' + song.artist + '</div><div class="collapsible-body"><p>Song Title: ' + song.title + '<br />Artist: ' + song.artist + '<br />Duration: <span id="duration' + (items - 1) + '"></span></p></div></li>');
+            playlist[items] = song;
         }
 
         function updateTotal() {
