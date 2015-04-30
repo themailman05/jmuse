@@ -19,7 +19,7 @@
             else
             {
 
-                var songObject = playlist[playing];
+                var songObject = playlist[playing].file;
                 beginPlaying(songObject);
 
 				processed.onended = function() {
@@ -32,9 +32,9 @@
                 //playFromDB("ID SONG NAME"); //TODO: implement database driven playback
             }
         });
+        
         function beginPlaying(thisSong) {
 			setTimeout(function(){console.log("waiting for load"); loadSong(thisSong); }, 100);
-            thisSong.start(0);
         }
         
         function playNext() {
