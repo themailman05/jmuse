@@ -82,7 +82,6 @@
             var songName = prompt("Song Title:");
             var artist = prompt("Artist:");
             addSong(files[0], songName, artist);
-            addToPlaylist(getSong(1));
         });
 
         $('#player').on('ended', function () {
