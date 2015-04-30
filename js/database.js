@@ -85,13 +85,13 @@ function getSongs()
     store.index('title').openKeyCursor().onsuccess = function(evt){
         var cursor = evt.target.result;
         if (cursor) {
-            songlist.push(cursor.key);
+            songlist.push({title:cursor.key, artists:cursor.value.artist,
+                file:URL.createObjectURL(cursor.value.file)});
             cursor.continue();
         }
         else {
             for (ii = 0; ii<songlist.length; ii++){
-                console.log("Song item: " + songlist[ii].toString());
-                var file = URL.createObjectURL(files[0]);
+                console.log("Song item: " + songlist[ii].title.toString());
 
             }
         }
