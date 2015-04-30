@@ -20,7 +20,7 @@ function loadSong(songBuffer){
         analyzer.connect(audioCtx.destination);
         source.loop = false;
 
-        source.start(0);
+        return source;
         visualize();
     });
 }	

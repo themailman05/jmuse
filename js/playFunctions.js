@@ -46,26 +46,43 @@
             }
             else
             {
-                if (player.paused) { //rewrite for WebAudio functions
-                    player.src = playlist[playing];
-                    //player.play();
 
-                    songObject = getSong(playing);
+                var songObject = getSong(playing);
+                var processed = processSong(songObject);
+                beginPlaying(processed);
 
-                    setTimeout(function(){console.log("waiting for load"); loadSong(songObject.file); }, 100);
+				processed.onended = function() {
+					console.log('Playing next song in queue.');
+					playNext();
+				};
 
+                $("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
 
-
-                    $("#playIcon").removeClass("mdi-av-play-arrow").addClass("mdi-av-pause");
-
-                    //playFromDB("ID SONG NAME"); //TODO: implement database driven playback
-                }
-                else {
-                    player.pause();
-                    $("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play-arrow");
-                }
+                //playFromDB("ID SONG NAME"); //TODO: implement database driven playback
             }
         });
+        
+        function processSong(thisSong) {
+        	var newSong;
+			setTimeout(function(){console.log("waiting for load"); newSong = loadSong(thisSong.file); }, 100);
+			return newSong;
+        }
+        
+        function beginPlaying(thisSong) {
+            thisSong.start(0);
+        }
+        
+        function playNext() {
+        	playing++;
+        	var songObject = getSong(playing);
+            var processed = processSong(songObject);
+            beginPlaying(processed);
+
+			processed.onended = function() {
+				console.log('Playing next song in queue.');
+				playNext();
+			};
+        }
 
         $("#clearBtn").click(function () {
             clearPlaylist();
@@ -82,10 +99,6 @@
             var songName = prompt("Song Title:");
             var artist = prompt("Artist:");
             addSong(files[0], songName, artist);
-        });
-
-        $('#player').on('ended', function () {
-            playNext();
         });
 
         function populatePlaylistDOM(song) {
