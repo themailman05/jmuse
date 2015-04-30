@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
  
     if(idbSupported) {
-        var openRequest = indexedDB.open("audioStorage",1);
+        var openRequest = indexedDB.open("audioStorage",2);
  
         openRequest.onupgradeneeded = function(e) {
             console.log("Upgrading...");
