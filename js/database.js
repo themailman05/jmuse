@@ -65,6 +65,7 @@ function addSong(file, title, artist)
         };
 
         var request = store.add(song);
+        addToPlaylist(song);
 
         request.onerror = function(e) {
             console.log("Error", e.target.error.name);
@@ -73,7 +74,6 @@ function addSong(file, title, artist)
 
         request.onsuccess = function(e) {
             console.log("Song " + title + " successfully added.");
-            addToPlaylist(song);
         };
     };
  
