@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
  
     if(idbSupported) {
-        var openRequest = indexedDB.open("audioStorage",5);
+        var openRequest = indexedDB.open("audioStorage",6);
  
         openRequest.onupgradeneeded = function(e) {
             console.log("Upgrading...");
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
  
             if(!localDB.objectStoreNames.contains("songs")) {
                 var store = localDB.createObjectStore("songs",
-                    {autoIncrement: true});
+                    {keyPath:"title", autoIncrement: true});
                 store.createIndex('title', 'title', {unique: true});
             }
  
