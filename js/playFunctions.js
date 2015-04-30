@@ -121,6 +121,6 @@ var items = 0,
             player.pause();
             $("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play-arrow");
             //player.src = null;
-            playlist = []
+            playlist = [];
 
         }

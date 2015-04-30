@@ -51,7 +51,7 @@ function addSong(file, title, artist)
         console.log("FileReader output: " + fr.result);
         tempFile = fr.result;
 
-                var transaction = db.transaction(["songs"],"readwrite");
+        var transaction = db.transaction(["songs"],"readwrite");
         var store = transaction.objectStore("songs");
 
         var song = {
