@@ -1,5 +1,6 @@
 var idbSupported = false,
-	db;
+	db,
+    playlist = [];
  
 document.addEventListener("DOMContentLoaded", function(){
  
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function(){
         openRequest.onsuccess = function(e) {
             console.log("Success!");
             db = e.target.result;
+            playlist = getAllSongs();
         };
  
         openRequest.onerror = function(e) {
@@ -35,6 +37,8 @@ document.addEventListener("DOMContentLoaded", function(){
     }
  
 },false);
+
+
 
 function addSong(file, title, artist)
 {
@@ -76,19 +80,19 @@ function addSong(file, title, artist)
 }
 
 function getSongKeys() {
-    songlist = [];
+    keylist = [];
 
     var transaction = db.transaction(["songs"],"readonly");
     var store = transaction.objectStore("songs");
     store.index('title').openKeyCursor().onsuccess = function(evt){
         var cursor = evt.target.result;
         if (cursor) {
-            songlist.push(cursor.key);
+            keylist.push(cursor.key);
             cursor.continue();
         }
         else {
-            for (ii = 0; ii<songlist.length; ii++){
-                console.log("Song item: " + songlist[ii].toString());
+            for (ii = 0; ii<keylist.length; ii++){
+                console.log("Song item: " + keylist[ii].toString());
             }
         }
     }; // here id is primary key path
@@ -109,5 +113,26 @@ function getSong(key) {
     request.onerror = function(e){
         console.log("OH FUCK COULDNT FIND THAT SHIT IN THE DB");
     };
+
+};
+
+function getAllSongs(){
+    var transaction = db.transaction(["songs"],"readonly");
+    var store = transaction.objectStore("songs");
+
+    songList = [];
+
+    store.openCursor().onsuccess = function(event) {
+        var cursor = event.target.result;
+        if (cursor) {
+            songList.push(cursor.value);
+            console.log("added " + cursor.value.title + "to songList.")
+            cursor.continue();
+        }
+        else {
+            console.log("No more entries!");
+        }
+    };
+    return songList;
 
 };
