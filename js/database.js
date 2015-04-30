@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", function(){
  
         openRequest.onupgradeneeded = function(e) {
             console.log("Upgrading...");
-            var db = e.target.result;
+            var localDB = e.target.result;
  
-            if(!db.objectStoreNames.contains("songs")) {
-                store = db.currentTarget.result.createObjectStore("songs",
+            if(!localDB.objectStoreNames.contains("songs")) {
+                var store = localDB.createObjectStore("songs",
                     {keyPath: 'title', autoIncrement: false});
                 store.createIndex('title', 'title', {unique: false});
             }
@@ -52,14 +52,14 @@ function addSong(file, title, artist)
 
         theblob = new Blob([tempFile], {type: "audio/mp3"});
 
+        var transaction = db.transaction(["songs"],"readwrite");
+        var store = transaction.objectStore("songs");
+
         var song = {
             title:title,
             artist:artist,
             file:theblob
         };
-
-        var transaction = db.transaction(["songs"],"readwrite");
-        var store = transaction.objectStore("songs");
 
         var request = store.add(song);
 
