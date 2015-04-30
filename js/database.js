@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
  
             if(!db.objectStoreNames.contains("songs")) {
                 store = db.currentTarget.result.createObjectStore("songs",
-                    {keyPath: 'id', autoIncrement: true});
+                    {keyPath: 'title', autoIncrement: false});
                 store.createIndex('title', 'title', {unique: false});
             }
  
@@ -41,33 +41,39 @@ function addSong(file, title, artist)
     var tempFile;
 
     console.log("About to add "+title+"/"+artist);
-    	fr = new FileReader();
 
-        fr.readAsArrayBuffer(file);
-        fr.onload = function(){
-        	console.log("FIleReader output: " + fr.result);
-            tempFile = fr.result;
-		};
+ 
+	//create the song object and add song to database
+    fr = new FileReader();
+    fr.readAsArrayBuffer(file);
+    fr.onload = function(){
+        console.log("FileReader output: " + fr.result);
+        tempFile = fr.result;
 
-    
-    var transaction = db.transaction(["songs"],"readwrite");
-    var store = transaction.objectStore("songs", 1);
- 
-	//create the song object
-    var song = {
-        title:title,
-        artist:artist,
-        file:tempFile
+        theblob = new Blob([tempFile], {type: "audio/mp3"});
+
+        var song = {
+            title:title,
+            artist:artist,
+            file:theblob
+        };
+
+        var transaction = db.transaction(["songs"],"readwrite");
+        var store = transaction.objectStore("songs", 1);
+
+        var request = store.add(song);
+
+        request.onerror = function(e) {
+            console.log("Error", e.target.error.name);
+            //some type of error handler
+        };
+
+        request.onsuccess = function(e) {
+            console.log("Song " + title + " successfully added.");
+            i++;
+        };
     };
  
- 	//add song to database
-    var request = store.add(song, {keyPath: 'id', autoIncrement: true});
-    
-    request.onerror = function(e) {
-        console.log("Error", e.target.error.name);
-    };
- 
-    request.onsuccess = function(e) {
-        console.log("Song " + title + " successfully added.");
-    };
+
+
 }
