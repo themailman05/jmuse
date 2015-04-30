@@ -70,6 +70,5 @@ function addSong(file, title, artist)
  
     request.onsuccess = function(e) {
         console.log("Song " + title + " successfully added.");
-        i++;
     };
 }
