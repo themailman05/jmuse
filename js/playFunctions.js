@@ -2,16 +2,11 @@
  * Created by Mark on 4/29/15
  */
 
-var items = 0,
+		var items = 0,
             playing = 1,
             playlistGUI = $("#playlistGUI ul"),
             time = new Date(),
-            formattedTime = time.getHours() + ":" + time.getMinutes(),
-            duration,
-            objectURL,
-            fileName,
-            fileType,
-            fileSize;
+            formattedTime = time.getHours() + ":" + time.getMinutes();
 
         $("#temp").on("canplaythrough", function (e) {
             var seconds = e.currentTarget.duration;
@@ -46,6 +41,11 @@ var items = 0,
         });
 
         $("#playBtn").click(function () {
+            if (items == 0) {
+                alert("Playlist Empty");
+            }
+            else
+            {
                 if (player.paused) { //rewrite for WebAudio functions
                     player.src = playlist[playing];
                     //player.play();
@@ -64,6 +64,7 @@ var items = 0,
                     player.pause();
                     $("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play-arrow");
                 }
+            }
         });
 
         $("#clearBtn").click(function () {
