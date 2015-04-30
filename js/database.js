@@ -65,7 +65,6 @@ function addSong(file, title, artist)
     
     request.onerror = function(e) {
         console.log("Error", e.target.error.name);
-        //some type of error handler
     };
  
     request.onsuccess = function(e) {
