@@ -51,9 +51,7 @@ function addSong(file, title, artist)
         console.log("FileReader output: " + fr.result);
         tempFile = fr.result;
 
-        theblob = new Blob([tempFile], {type: "audio/mp3"});
-
-        var transaction = db.transaction(["songs"],"readwrite");
+                var transaction = db.transaction(["songs"],"readwrite");
         var store = transaction.objectStore("songs");
 
         var song = {
@@ -87,11 +85,15 @@ function getSongs()
     store.index('title').openKeyCursor().onsuccess = function(evt){
         var cursor = evt.target.result;
         if (cursor) {
-            songlist.push(cursor.value);
+            songlist.push(cursor.key);
             cursor.continue();
         }
         else {
-            alert("Got all songs: " + songlist.toString());
+            for (ii = 0; ii<songlist.length; ii++){
+                console.log("Song item: " + songlist[ii].toString());
+                var file = URL.createObjectURL(files[0]);
+
+            }
         }
     }; // here id is primary key path
 

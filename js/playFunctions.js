@@ -120,7 +120,7 @@ var items = 0,
             playing = 0;
             player.pause();
             $("#playIcon").removeClass("mdi-av-pause").addClass("mdi-av-play-arrow");
-            player.src = null;
-            playlist = [];
+            //player.src = null;
+            playlist = []
 
         }
