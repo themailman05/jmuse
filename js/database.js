@@ -15,9 +15,8 @@ document.addEventListener("DOMContentLoaded", function(){
             var localDB = e.target.result;
  
             if(!localDB.objectStoreNames.contains("songs")) {
-                var store = localDB.createObjectStore("songs",
-                    {keyPath: 'title', autoIncrement: false});
-                store.createIndex('title', 'title', {unique: false});
+                var store = localDB.createObjectStore("songs", {autoIncrement: true});
+                store.createIndex('title', 'title', {unique: true});
             }
  
         };
