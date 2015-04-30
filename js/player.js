@@ -23,17 +23,7 @@ function loadSong(songBuffer){
         source.start(0);
         visualize();
     });
-}
-
-function getDuration(song){
-    source = audioCtx.createBufferSource();
-
-    audioCtx.decodeAudioData(song, function(buffer) {
-
-        return buffer.durration;
-    });
-}
-	
+}	
 
 function visualize(){
     var canvas = document.getElementById("viz");

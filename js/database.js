@@ -62,7 +62,6 @@ function addSong(file, title, artist)
         var song = {
             title:title,
             artist:artist,
-            duration:getDuration(tempFile),
             file:tempFile
         };
 
