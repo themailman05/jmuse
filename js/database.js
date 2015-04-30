@@ -3,14 +3,13 @@ var idbSupported = false,
     playlist = [];
  
 document.addEventListener("DOMContentLoaded", function(){
-
  
     if("indexedDB" in window) {
         idbSupported = true;
     }
  
     if(idbSupported) {
-        var openRequest = indexedDB.open("audioStorage",8);
+        var openRequest = indexedDB.open("audioStorage",7);
  
         openRequest.onupgradeneeded = function(e) {
             console.log("Upgrading...");
@@ -74,7 +73,7 @@ function addSong(file, title, artist)
         };
 
         request.onsuccess = function(e) {
-            console.log("Song " + title + " successfully added. ");
+            console.log("Song " + title + " successfully added.");
         };
     };
  
