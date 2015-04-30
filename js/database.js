@@ -38,12 +38,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
 function addSong(file, title, artist)
 {
+    var tempFile;
+
     console.log("About to add "+title+"/"+artist);
     	fr = new FileReader();
+
         fr.readAsArrayBuffer(file);
         fr.onload = function(){
         	console.log("FIleReader output: " + fr.result);
-            writeToDB(fr.result, songName);
+            tempFile = fr.result;
 		};
 
     
@@ -54,7 +57,7 @@ function addSong(file, title, artist)
     var song = {
         title:title,
         artist:artist,
-        file:file
+        file:tempFile
     };
  
  	//add song to database
