@@ -70,7 +70,7 @@
         function pause() {
   			source.stop(0);
 			paused = true;
-  			resumeTime = 10;
+  			resumeTime = audioCtx.currentTime - startTime;
 		}
 
         $("#clearBtn").click(function () {
