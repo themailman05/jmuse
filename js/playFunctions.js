@@ -81,8 +81,8 @@
             var file = URL.createObjectURL(files[0]);
             var songName = prompt("Song Title:");
             var artist = prompt("Artist:");
-            addToPlaylist(file, songName, artist);
             addSong(files[0], songName, artist);
+            addToPlaylist(getSong(items + 1));
         });
 
         $('#player').on('ended', function () {
